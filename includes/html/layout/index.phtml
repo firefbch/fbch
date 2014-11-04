@@ -1,1 +1,18 @@
-<?php
+<html>
+	<head>
+		<title><?php echo $this -> siteDatas -> SITE_CONFIG["SITE_NAME"];?></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<?php foreach ($this -> _controllCss as $cssFile):?><link rel="StyleSheet" href="/style/<?php echo $cssFile;?>.css" type="text/css"><?php endforeach;?>
+		<?php foreach ($this -> _controllJs as $jsFile):?><script type="text/javascript" src="<?php echo ((strtolower(substr($jsFile, 0, 4)) == "http") ? $jsFile : "/scripts/" . $jsFile);?>.js"></script><?php endforeach;?>
+		<script type="text/javascript">
+		$(function(){
+			var weeksAry = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六");
+			var chineseDate = "<?php echo date("Y年m月d日");?>(" + weeksAry[<?php echo date(w);?>] + ") " + LunarDate.GetLunarDay(<?php echo date("Y, m, d");?>);
+			$("#cdate").html(chineseDate);
+		});
+		</script>
+	</head>
+	<body>
+		<?php require_once PHP_INCS . DS . "html" . DS . "body" . DS . $this->assignTemplate . DS . $this->assignPage . ".phtml";?>
+	</body>
+</html>
