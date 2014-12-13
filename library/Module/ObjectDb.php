@@ -1,12 +1,13 @@
 <?php 
 class Module_ObjectDb{
 	private $_db;
-	public $_layout;
+	public $_layout, $_myPage, $_chkf;
 	
 	public function __construct(){
 		$this -> _db = Module_Managedb::getInstance();
 		$this -> _db -> connMysqlDb(new Module_Conf());
 		$this->_layout = "index";
+		$this->_myPage = "index";
 	}
 	
 	//查詢
@@ -29,6 +30,12 @@ class Module_ObjectDb{
 	//刪除
 	public function deleteDb($tbName, $strWhe){
 		return $this -> _db -> deleteDb($tbName, $strWhe);
+	}
+	
+	//返回筆數
+	public function getRows($tbName, $array){
+		$data = $this->selectDb(array($tbName, "count(*)"), $array);
+		return $data[0]["count(*)"];
 	}
 	
 	/**
@@ -61,5 +68,21 @@ class Module_ObjectDb{
 		return $this -> _db -> pager_list($array, $link, $pageNo, $limit);
 	}
 	
+	//取得變數
+	public function getVariables($name){
+		$pathAry = explode("/", $_SERVER["REQUEST_URI"]);
+		if (array_search($name, $pathAry)){
+			$key = array_search($name, $pathAry);
+			return $pathAry[$key + 1];
+		}else{
+			return null;
+		}
+	}
+	
+	//網頁導向
+	public function reDirect($mesg, $url){
+		require_once PHP_INCS . '/html/layout/redirect.phtml';
+		exit;
+	}
 }
 ?>

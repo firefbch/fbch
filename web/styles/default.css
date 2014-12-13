@@ -1,0 +1,110 @@
+@CHARSET "UTF-8";
+
+body{
+	margin: 0px;
+	padding: 0px;
+	font-size: 18px;
+	text-align: center;
+}
+
+#web_main{
+	clear: both;
+	width: 1024px;
+	margin: 0px auto;
+}
+
+#main_top{
+	clear: both;
+	width: 100%;
+	height: 120px;
+	border: 5px #E7E7E7 solid;
+}
+
+#main_center{
+	clear: both;
+	width: 100%;
+	text-align: left;
+}
+#main_left{
+	float: left;
+	width: 304px;
+	border: 5px #E7E7E7 solid;
+}
+#main_right{
+	float: left;
+	width: 700px;
+	border: 5px #E7E7E7 solid;
+	text-align: center;
+}
+#main_menu{
+	position: absolute;
+	margin-top: 80px;
+	padding-left: 155px;
+}
+#main_menu ul{
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+#main_menu ul li{
+	float: left;
+	margin: 5px;
+	padding: 5px;
+	background-color: #E3E3E3;
+	border: 1px #3E3E3E solid;
+}
+#main_menu ul li a{
+	text-decoration: none;
+	
+	
+}
+#SITE_TITLE{
+	clear: both;
+	margin-left: 10px;
+	margin-right: 10px;
+	height: 50px;
+	line-height: 50px;
+	font-size: 26px;
+}
+.pageList{
+	clear: both;
+	margin-left: 10px;
+	margin-right: 10px;
+	text-align: center;
+	height: 30px;
+	line-height: 30px;
+}
+
+/*後台會員登入*/
+#login_main{
+	clear: both;
+	width: 500px;
+	height: 300px;
+	margin: 0px auto;
+}
+#login_main .title{
+	clear: both;
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	font-size: 20px;
+	font-weight: bold;
+}
+#login_main .login_div{
+	clear: both;
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	text-align: left;
+}
+.admin_smenu{
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+	margin: 85px 0px 0px 825px;
+}
+.admin_smenu li{
+	float: left;
+	padding: 5px;
+	font-size: 13px;
+}

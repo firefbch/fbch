@@ -8,7 +8,11 @@ class Module_Home extends Module_ObjectDb{
 	
 	//主頁
 	public function index(){
+		$this->_layout = "index";
 		$this->_data = $this->selectDb("news", array("strWhe" => array("ACTIVE = 'Y'")));
+	}
+	
+	public function getData(){
 		return $this->_data;
 	}
 	
