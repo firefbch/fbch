@@ -7,6 +7,12 @@ body{
 	text-align: center;
 }
 
+.clear_div{
+	clear: both;
+	width: 100%;
+	height: 50px;
+}
+
 #web_main{
 	clear: both;
 	width: 1024px;
@@ -38,7 +44,7 @@ body{
 }
 #main_menu{
 	position: absolute;
-	margin-top: 80px;
+	margin-top: 50px;
 	padding-left: 155px;
 }
 #main_menu ul{
@@ -55,8 +61,6 @@ body{
 }
 #main_menu ul li a{
 	text-decoration: none;
-	
-	
 }
 #SITE_TITLE{
 	clear: both;
@@ -73,6 +77,38 @@ body{
 	text-align: center;
 	height: 30px;
 	line-height: 30px;
+}
+
+.news_list{
+	list-style-type: none;
+}
+.news_list li{
+	clear: both;
+	text-align: left;
+}
+#detail_news{
+	clear: both;
+	width: 100%;
+}
+#detail_news_title{
+	clear: both;
+	height: 50px;
+	line-height: 50px;
+	text-align: left;
+	margin: 0px 20px 0px 20px;
+	font-size: 26px;
+	font-weight: bold;
+}
+#detail_news_img{
+	clear: both;
+	width: 100%;
+	text-align: center;
+}
+#detail_news_memoirs{
+	clear: both;
+	margin: 5px;
+	padding: 5px;
+	text-align: left;
 }
 
 /*後台會員登入*/
@@ -107,4 +143,14 @@ body{
 	float: left;
 	padding: 5px;
 	font-size: 13px;
+}
+.new_modify{
+	clerar: both;
+	width: 100%;
+	text-align: left;
+}
+
+#modify_detail{
+	clear: both;
+	width: 100%;
 }

@@ -1,13 +1,14 @@
 <?php 
 class Module_ObjectDb{
 	private $_db;
-	public $_layout, $_myPage, $_chkf;
+	public $_layout, $_myPage, $_chkf, $_fieldAry;
 	
 	public function __construct(){
 		$this -> _db = Module_Managedb::getInstance();
 		$this -> _db -> connMysqlDb(new Module_Conf());
 		$this->_layout = "index";
 		$this->_myPage = "index";
+		$this->_fieldAry = array("ID", "TITLE", "MEMOIRS", "FDATE", "UDATE");
 	}
 	
 	//查詢
@@ -46,7 +47,7 @@ class Module_ObjectDb{
 	 * @param array $fieldAry		所使用的欄位名稱
 	 * 
 	 */
-	public function getRowData($tbName, $array, $fieldAry){
+	public function getRowData($tbName, $array, $fieldAry = array("ID", "TITLE", "MEMOIRS")){
 		$attr = new stdClass();
 		//取得資料
 		$data = $this -> selectDb($tbName, $array);
@@ -83,6 +84,48 @@ class Module_ObjectDb{
 	public function reDirect($mesg, $url){
 		require_once PHP_INCS . '/html/layout/redirect.phtml';
 		exit;
+	}
+	
+	//上傳檔案
+	public function uploadFile($file, $file_name, $file_size, $path, $new_file, $old_file="", $patten="", $max_file_size=30720000, $lang="chinese") {
+		$COMMON_UPLOAD_FILETYPE = "gif|jpg|png|jpeg|bmp|zip|rar|doc|pdf|xls";
+		$base = $_SERVER['DOCUMENT_ROOT'];
+		$path = str_replace("\\",DIRECTORY_SEPARATOR,$path);
+		$path = $base.DIRECTORY_SEPARATOR.trim(str_replace($base,"",$path), DIRECTORY_SEPARATOR);
+
+		if(strlen($new_file)) $new_file = $path.DIRECTORY_SEPARATOR.$new_file;
+		//if(strlen($old_file)) $old_file = $path.DIRECTORY_SEPARATOR.$old_file;
+
+		$patten = (!strcmp($patten, "")) ? "\.+[" . $COMMON_UPLOAD_FILETYPE . "]+$" : $patten;
+		
+		if ($file_size > $max_file_size) {
+			$errmsg1 = " '$file_name': 上傳檔案大小超過規定的".($max_file_size/1024)."Kb. ";
+			$errmsg2 = " '$file_name': The file size is over ".($max_file_size/1024)."Kb. ";
+			return (($lang == "chinese") ? $errmsg1 : $errmsg2);
+		}
+		else if (strcmp($patten, "") && !preg_match("/" . $patten . "/", $file_name)) {
+			$errmsg1 = " '$file_name': 上傳檔案格式不正確. ";
+			$errmsg2 = " '$file_name': The file format no match. ";
+			return (($lang == "chinese") ? $errmsg1 : $errmsg2);
+		} else {
+			if (!is_dir($path)) {
+				if (!mkdirs($path, 755)) {
+					$errmsg1 = " '$file_name': 建立資料夾時發生錯誤. ";
+					$errmsg2 = " '$file_name': Make directory fail. ";
+					return (($lang == "chinese") ? $errmsg1 : $errmsg2);
+				}
+			}
+
+			if (file_exists("." . $old_file)) {
+				@unlink("." . $old_file);
+			}
+			if (!@move_uploaded_file($file["tmp_name"], $new_file)) {
+				$errmsg1 = " '$file_name': 複製檔案時發生錯誤. ";
+				$errmsg2 = " Copy file fail. ";
+				return (($lang == "chinese") ? $errmsg1 : $errmsg2);
+			}
+			return "";
+		}
 	}
 }
 ?>

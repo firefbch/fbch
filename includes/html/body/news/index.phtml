@@ -3,8 +3,8 @@
 <?php 
 $data = $view->getData();
 foreach ($data[0] as $val):?>
-	<li>[<?php echo $val["WDATE"];?>] <a href="/news/detail/id/<?php echo $val["ID"];?>"><?php echo $val["TITLE"];?></a></li>
+	<li>[<?php echo $val["WDATE"];?>] <a href="/news/detail/pageNo/<?php echo $data["PAGENO"]?>/id/<?php echo $val["ID"];?>/"><?php echo $val["TITLE"];?></a></li>
 <?php endforeach;?>
 </ul>
-<div style="clear:both;"></div>
+<div style="clear:both;height:50px;"></div>
 <div class="pageList"><?php echo $data[1];?></div>

@@ -2,7 +2,7 @@
 ini_set("display_errors", "on");
 class Module_ManageCenter{
 	private $_url_pathAry, $_chkf;
-	public $siteDatas, $view, $assignTemplate = "Home", $assignPage = "index", $_controllCss = array("default"), $_controllJs = array("jquery-1.8.3", "chineseDate");
+	public $siteDatas, $view, $assignTemplate = "Home", $assignPage = "index", $_controllCss = array("default"), $_controllJs = array("jquery-1.8.3", "jquery-ui-1.9.2.custom", "chineseDate", "lib", "jquery.ui.datepicker");
 	
 	public function __construct(){
 		$this->_url_pathAry = explode("/", $_SERVER["REQUEST_URI"]);
@@ -31,6 +31,7 @@ class Module_ManageCenter{
 			if (method_exists($view, $this->_url_pathAry[2])) $this->assignPage = $this->_url_pathAry[2];
 			//var_dump(method_exists($obj, $this->_url_pathAry[2]));
 			$myFunc = $this->assignPage;
+			$view->_myPage = $myFunc;
 			//echo $myFunc . "///" . $this->_url_pathAry[2] . "///" . $myClass;
 			$view->$myFunc();
 			$template_dir = LAYOUT_PATH . DS . $view->_layout . ".phtml";
