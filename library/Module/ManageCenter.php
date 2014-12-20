@@ -41,6 +41,7 @@ class Module_ManageCenter{
 				require_once PHP_INCS . DS . "html" . DS . "layout" . DS . "index.phtml";;
 			}
 		}else{
+			$this->assignTemplate = (strcmp($this->_url_pathAry[1], "")) ? $this->_url_pathAry[1] : "home";
 			$myClass = "Module_" . $this->assignTemplate;
 			$view = new $myClass();
 			//檢查物件中是否有方法可用

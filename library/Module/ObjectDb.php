@@ -103,7 +103,7 @@ class Module_ObjectDb{
 			$errmsg2 = " '$file_name': The file size is over ".($max_file_size/1024)."Kb. ";
 			return (($lang == "chinese") ? $errmsg1 : $errmsg2);
 		}
-		else if (strcmp($patten, "") && !preg_match("/" . $patten . "/", $file_name)) {
+		else if (strcmp($patten, "") && !preg_match("/" . $patten . "/", strtolower($file_name))) {
 			$errmsg1 = " '$file_name': 上傳檔案格式不正確. ";
 			$errmsg2 = " '$file_name': The file format no match. ";
 			return (($lang == "chinese") ? $errmsg1 : $errmsg2);

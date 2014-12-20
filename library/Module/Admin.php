@@ -16,6 +16,68 @@ class Module_Admin extends Module_ObjectDb{
 		}
 	}
 	
+	public function about(){
+		$com_id = $this->getVariables("com_id");
+		$com_id = (strcmp($com_id, "")) ? $com_id : 1;
+		
+		if ($_POST["action"] == "update"){
+			$upload_dir = $this->_upLoadDir . "/aboutus";
+			if (!file_exists("." . $upload_dir)){
+				mkdir("." . $upload_dir, 755);
+			}
+			$errmsg = "";
+			$cond = array();
+			$file_fileds = array("IMAGE1", "IMAGE2", "IMAGE3", "IMAGE4", "IMAGE5", "IMAGE6");
+			$id = $this->getVariables("id");
+			$com_id = $this->getVariables("com_id");
+				
+			$data = $this->selectDb("aboutus", array("strWhe" => array("ID = '" . $id . "'")));
+			while (list($key, $val) = each($file_fileds)) {
+				$field_name = $_FILES[strtolower($val)];
+				if (strcmp($field_name["name"], "")) {
+					$old_file_path = $upload_dir . "/" . $data[0][strtoupper($val)];
+					$new_file_name = md5($field_name["name"] . "-" . microtime()) . strrchr($field_name["name"], ".");
+					$upload_file_path = $new_file_name;
+					$errmsg = $this->uploadFile($field_name, $field_name["name"], $field_name["size"], $upload_dir, $upload_file_path, $old_file_path, "\.+[jpg|jpeg|gif|png]+$");
+					if (!strcmp($errmsg, "")) {
+						$cond[strtoupper($val)] = $new_file_name;
+					}
+				}
+			}
+				
+			if ($this->getRows("aboutus", array("strWhe" => array("ID = '" . $id . "'")))){
+				$cond["TITLE"] = $_POST["title"];
+				$cond["MEMOIRS"] = $_POST["memoirs"];
+				$cond["ACTIVE"] = $_POST["active"];
+				$cond["UDATE"] = date("YmdHis");
+			
+				$this->updateDb("aboutus", $cond, array("ID = '" . $id . "'"));
+				$mesg = "完成關於我們更新" . ((strcmp($errmsg, "")) ? ",但" . $errmsg : ".");
+				$this->reDirect($mesg, "/admin/about/com_id/$com_id/id/$id/");
+			}else{
+				$cond["TITLE"] = addslashes($_POST["title"]);
+				$cond["MEMOIRS"] = addslashes($_POST["memoirs"]);
+				$cond["ACTIVE"] = $_POST["active"];
+				$cond["FDATE"] = date("YmdHis");
+				$cond["UDATE"] = date("YmdHis");
+			
+				$this->insertDb("aboutus", $cond);
+				$mesg = "完成新增";
+				$this->reDirect($mesg, "/admin/about/");
+			}
+		}
+		
+		$item = array();
+		for ($x = 1;$x < 6;$x++){
+			$item[] = "<a href=\"/admin/about/com_id/$x/\">項目" . $x . "</a>";
+		}
+		
+		$this->_myPage = "aboutUs";
+		$this->_fieldAry = $this->_fieldAry + array("","","","","","COM_ID","IMAGE1","IMAGE2","IMAGE3","IMAGE4","IMAGE5","IMAGE6","ACTIVE");
+		$this->_data = $this->getRowData("aboutus", array("strWhe" => array("COM_ID = '" . $com_id . "'")), $this->_fieldAry);
+		$this->_data -> item = $item;
+	}
+	
 	public function news(){
 		$page_name = $this->getVariables("page_name");
 		$page_name = (strcmp($page_name, "")) ? $page_name : "news_list";

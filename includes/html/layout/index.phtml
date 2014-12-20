@@ -26,9 +26,11 @@
 				</div>
 			</div>
 			<div id="main_center">
-				<div id="main_left">
-					
-				</div>
+				<div id="main_left"><ul>
+					<?php if ($this->_url_pathAry[1] == "about"):$data = $view->getData();
+					echo "<li>" . implode("</li><li>", $data["item"]) . "</li>";
+					endif;?>
+				</ul></div>
 				<div id="main_right"><?php require_once TEMPLATE_PATH . DS . $this->assignTemplate . DS . $view->_myPage . ".phtml";?></div>
 			</div>
 		</div>
