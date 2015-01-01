@@ -8,7 +8,7 @@ class Module_FunctionList extends Module_ObjectDb{
 	}
 	
 	private function fdata(){
-		$this->_array = array("home", "news");
+		$this->_array = array("home", "news","about","download","business","member");
 		$this->_titleAry = array(
 							"home"		=> array("title" => "首頁", "active" => "N"),
 							"about"		=> array("title" => "協會簡介", "active" => "Y"),
@@ -17,6 +17,7 @@ class Module_FunctionList extends Module_ObjectDb{
 							"download"	=> array("title" => "檔案下載", "active" => "Y"),
 							"contact"	=> array("title" => "聯絡我們", "active" => "Y"),
 							"space"		=> array("title" => "打火弟兄園地", "active" => "Y"),
+							"member"	=> array("title" => "會員專區", "active" => "Y"),
 							"calendar"	=> array("title" => "協會行事曆", "active" => "Y"),
 							"link"		=> array("title" => "全國警義消單位網站連結", "active" => "N")
 		);

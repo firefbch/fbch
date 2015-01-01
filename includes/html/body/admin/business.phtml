@@ -1,0 +1,48 @@
+<?php $data = $view->getData();?>
+<div id="modify_detail">
+	<div style="text-align:right;"><?php echo implode(" | ", $data->item);?></div>
+	<form action="<?php echo $_SERVER["REQUEST_URI"];?>com_id/<?php echo $data->COM_ID;?>/id/<?php echo $data->ID;?>" method="post" name="modify_form" id="modify_form" enctype="multipart/form-data">
+		<input type="hidden" name="action" id="action" value="update">
+		<table width="98%">
+		<tr>
+			<td></td>
+			<td align="right">標題&nbsp;</td>
+			<td><input type="text" name="title" id="title" value="<?php echo $data->TITLE;?>"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td align="right">內容&nbsp;</td>
+			<td><textarea rows="6" cols="60" name="memoirs" id="memoirs"><?php echo stripslashes($data->MEMOIRS);?></textarea></td>
+			<td></td>
+		</tr>
+		<?php for ($x = 1;$x < 7;$x++):$fieldName = "IMAGE" . $x;?>
+		<tr>
+			<td></td>
+			<td align="right">檔案上傳<?php echo $x;?>&nbsp;</td>
+			<td>
+				<input type="file" name="<?php echo strtolower($fieldName);?>" id="<?php echo strtolower($fieldName);?>" value=""><br>
+				<?php if (strcmp($data->$fieldName, "")):?><div>目前的檔案:<?php echo $data->$fieldName;?><br>
+				<?php 
+				$fileAry = explode(".", $data->$fieldName);
+				if (in_array(strtolower($fileAry[1]), array("jpg","png","gif","bmp", "jpeg"))):?>
+				<img src="/public/business/<?php echo $data->$fieldName;?>" width="100">
+				<a href="/admin/business/page_name/delimg/field_name/<?php echo $fieldName;?>/id/<?php echo $data->ID;?>/">刪除檔案</a>
+				<?php endif;?>
+				</div><?php endif;?>
+			</td>
+			<td></td>
+		</tr>
+		<?php endfor;?>
+		<tr>
+			<td></td>
+			<td align="right">顯示&nbsp;</td>
+			<td><input type="radio" name="active" id="active" value="Y"<?php if ($data->ACTIVE == "Y"):?> checked<?php endif;?>> 啟用 <input type="radio" name="active" id="active" value="N"<?php if ($data->ACTIVE == "N"):?> checked<?php endif;?>> 開閉</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td colspan="4" align="center"><input type="submit" value="儲存">&nbsp;&nbsp;<input type="reset" value="重填"></td>
+		</tr>
+	</table>
+	</form>
+</div>

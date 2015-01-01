@@ -18,7 +18,7 @@ class Module_ManageCenter{
 	public function init(){
 		header("Content-type: text/html; charset=utf-8");
 		
-		if ($this->_chkf->chk($this->_url_pathAry[1]) || !strcmp($this->_url_pathAry[1], "") || $this->_url_pathAry[1] == "admin"){
+		if ($this->_chkf->chk($this->_url_pathAry[1]) || $this->_url_pathAry[1] == "admin"){
 			
 			$this->assignTemplate = (strcmp($this->_url_pathAry[1], "")) ? $this->_url_pathAry[1] : "home";
 			$myClass = "Module_" . $this->assignTemplate;
@@ -41,7 +41,7 @@ class Module_ManageCenter{
 				require_once PHP_INCS . DS . "html" . DS . "layout" . DS . "index.phtml";;
 			}
 		}else{
-			$this->assignTemplate = (strcmp($this->_url_pathAry[1], "")) ? $this->_url_pathAry[1] : "home";
+			//$this->assignTemplate = (strcmp($this->_url_pathAry[1], "")) ? $this->_url_pathAry[1] : "home";
 			$myClass = "Module_" . $this->assignTemplate;
 			$view = new $myClass();
 			//檢查物件中是否有方法可用

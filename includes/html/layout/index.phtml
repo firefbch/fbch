@@ -27,7 +27,7 @@
 			</div>
 			<div id="main_center">
 				<div id="main_left"><ul>
-					<?php if ($this->_url_pathAry[1] == "about"):$data = $view->getData();
+					<?php if (in_array($this->_url_pathAry[1], array("about", "business", "member"))):$data = $view->getData();
 					echo "<li>" . implode("</li><li>", $data["item"]) . "</li>";
 					endif;?>
 				</ul></div>

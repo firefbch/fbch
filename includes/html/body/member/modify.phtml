@@ -1,0 +1,13 @@
+<div id="login">
+	<div id="login_modify">
+		<div id="login_title" class="div_center joincolor">會員資料編輯</div>
+		<form action="/member/joindata/" method="post" name="user_form" id="user_form"><input type="hidden" name="action" id="action" value="update">
+		<div class="modify_div">會員密碼: <input type="password" name="user_passwd" id="user_passwd" value="<?php echo $data["PASSWD"];?>" size="50"></div>
+		<div class="modify_div">會員姓名: <input type="text" name="user_name" id="user_name" value="<?php echo $data["USER_NAME"];?>" size="50"></div>
+		<div class="modify_div">會員性別: <input type="radio" name="user_sex" id="user_sex" value="M"<?php echo (($data["USER_SEX"] == "M") ? " checked" : "");?>> 男&nbsp;&nbsp;<input type="radio" name="user_sex" id="user_sex" value="F"<?php echo (($data["USER_SEX"] == "F") ? " checked" : "");?>> 女</div>
+		<div class="modify_div">會員電話: <input type="text" name="user_tel" id="user_tel" value="<?php echo $data["USER_TEL"];?>" size="50"></div>
+		<div class="modify_div"></div>
+		<div class="login_div div_center"><input type="submit" value="送出"> <input type="reset" value="重設"></div>
+	</form>
+	</div>
+</div>

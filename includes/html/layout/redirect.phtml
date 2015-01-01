@@ -3,7 +3,7 @@
 		<title>正將要導向另一頁</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<script type="text/javascript">
-		alert("<?php echo $mesg;?>");
+		<?php if (strcmp($mesg, "")):?>alert("<?php echo $mesg;?>");<?php endif;?>
 		function gotox(){
 			window.location.href = "<?php echo $url;?>";
 		}
