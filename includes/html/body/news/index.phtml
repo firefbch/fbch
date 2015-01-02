@@ -1,9 +1,8 @@
-<div id="SITE_TITLE"><?php echo $this->_chkf->getFuName($this->_url_pathAry[1]);?></div>
 <ul class="news_list">
 <?php 
 $data = $view->getData();
 foreach ($data[0] as $val):?>
-	<li>[<?php echo $val["WDATE"];?>] <a href="/news/detail/pageNo/<?php echo $data["PAGENO"]?>/id/<?php echo $val["ID"];?>/"><?php echo $val["TITLE"];?></a></li>
+	<li><font size="2">[<?php echo $val["WDATE"];?>]</font> <a href="/news/detail/pageNo/<?php echo $data["PAGENO"]?>/id/<?php echo $val["ID"];?>/"><?php echo $val["TITLE"];?></a></li>
 <?php endforeach;?>
 </ul>
 <div style="clear:both;height:50px;"></div>

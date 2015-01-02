@@ -8,7 +8,7 @@ class Module_FunctionList extends Module_ObjectDb{
 	}
 	
 	private function fdata(){
-		$this->_array = array("home", "news","about","download","business","member");
+		$this->_array = array("home", "news","about","download","business","member","contact");
 		$this->_titleAry = array(
 							"home"		=> array("title" => "首頁", "active" => "N"),
 							"about"		=> array("title" => "協會簡介", "active" => "Y"),

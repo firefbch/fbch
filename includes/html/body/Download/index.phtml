@@ -1,9 +1,8 @@
-<div id="SITE_TITLE"><?php echo $this->_chkf->getFuName($this->_url_pathAry[1]);?></div>
 <ul class="news_list">
 <?php 
 $data = $view->getData();
 foreach ($data[0] as $val):?>
-	<li><div style="width:775px;float:left;"><?php echo $val["TITLE"];?></div><div style="width:100px;float:left;"><?php if (strcmp($val["FILE1"], "")):?><a href="/public/download/<?php echo $val["FILE1"];?>">下載一</a><?php endif;?></div><div style="width:100px;float:left;"><?php if (strcmp($val["FILE2"], "")):?><a href="/public/download/<?php echo $val["FILE2"];?>">下載二</a><?php endif;?></div></li>
+	<li><div style="width:745px;float:left;"><?php echo $val["TITLE"];?></div><div style="width:100px;float:left;"><?php if (strcmp($val["FILE1"], "")):?><a href="/public/download/<?php echo $val["FILE1"];?>">下載一</a><?php endif;?></div><div style="width:100px;float:left;"><?php if (strcmp($val["FILE2"], "")):?><a href="/public/download/<?php echo $val["FILE2"];?>">下載二</a><?php endif;?></div></li>
 <?php endforeach;?>
 </ul>
 <div style="clear:both;height:50px;"></div>

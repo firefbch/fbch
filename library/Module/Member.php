@@ -66,6 +66,7 @@ class Module_Member extends Module_ObjectDb{
 	}
 
 	public function modify(){
+		if (!$this->_memberData->chkLogin()) $this->reDirect("請先登入後才可編輯", "/member/login/");
 		if ($_POST["action"] == "update"){
 			$cond = array();
 			$cond["PASSWD"] = $_POST["user_passwd"];
@@ -87,8 +88,8 @@ class Module_Member extends Module_ObjectDb{
 				"login"		=> array("title" => "會員登入", "link" => "/member/login/"),
 				"modify"	=> array("title" => "會員資料編輯", "link" => "/member/modify/"),
 				"join"		=> array("title" => "加入會員", "link" => "/member/join/"),
-				"logout"	=> array("title" => "登出", "link" => "/member/logout/"),
-				"delete"	=> array("title" => "退會申請", "link" => "/member/delete/")
+				"logout"	=> array("title" => "登出", "link" => "/member/logout/")
+				//"delete"	=> array("title" => "退會申請", "link" => "/member/delete/")
 		);
 		
 		foreach ($array as $key => $val){

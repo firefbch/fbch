@@ -7,6 +7,10 @@ body{
 	text-align: center;
 }
 
+ul li a{
+	text-decoration: none;
+}
+
 .clear_div{
 	clear: both;
 	width: 100%;
@@ -18,7 +22,7 @@ body{
 
 #web_main{
 	clear: both;
-	width: 1024px;
+	width: 1005px;
 	margin: 0px auto;
 }
 
@@ -26,23 +30,35 @@ body{
 	clear: both;
 	width: 100%;
 	height: 120px;
-	border: 5px #E7E7E7 solid;
+	background-color: #6281C0;
 }
 
 #main_center{
 	clear: both;
 	width: 100%;
 	text-align: left;
+	background-color: F7F7F7;
 }
 #main_left{
 	float: left;
-	width: 304px;
-	border: 5px #E7E7E7 solid;
+	width: 250px;
+}
+#main_left ul{
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+#main_left ul li{
+	width: 220px;
+	height: 35px;
+	line-height: 35px;
+	border: 1px #E7E7E7 solid;
+	margin: 10px;
+	padding-left: 10px;
 }
 #main_right{
 	float: left;
-	width: 700px;
-	border: 5px #E7E7E7 solid;
+	width: 755px;
 	text-align: center;
 }
 #main_menu{
@@ -72,6 +88,9 @@ body{
 	height: 50px;
 	line-height: 50px;
 	font-size: 26px;
+	border: 1px #777777 solid;
+	margin: 5px;
+	background-color: #FFFFFF;
 }
 .pageList{
 	clear: both;
@@ -88,6 +107,9 @@ body{
 .news_list li{
 	clear: both;
 	text-align: left;
+	height: 35px;
+	line-height: 35px;
+	border-bottom: 1px #DDDDDD solid;
 }
 #detail_news{
 	clear: both;
@@ -138,8 +160,7 @@ body{
 .admin_smenu{
 	list-style-type: none;
 	margin: 0px;
-	padding: 0px;
-	margin: 85px 0px 0px 825px;
+	padding: 85px 0px 0px 790px;
 }
 .admin_smenu li{
 	float: left;
@@ -166,8 +187,9 @@ body{
 #login #login_main{
 	clear: both;
 	width: 320px;
-	height: 240px;
+	height: 165px;
 	margin: 0px auto;
+	border: 1px #777777 solid;
 }
 #login_title{
 	clear: both;
@@ -191,4 +213,21 @@ body{
 	margin-left: 30px;
 	height: 30px;
 	line-height: 30px;
+}
+.user_list{
+	float: left;
+	width: 200px;
+	height: 40px;
+	line-height: 40px;
+	text-align: left;
+	margin: 5px;
+	border: 1px #E7E7E7 solid;
+}
+.user_list li{
+	border: 0px;
+}
+#contact_main{
+	clear: both;
+	margin-left: 5px;
+	margin-right: 5px;
 }

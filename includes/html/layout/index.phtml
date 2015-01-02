@@ -14,7 +14,7 @@
 	</head>
 	<body>
 		<div id="web_main">
-			<div id="main_top">
+			<div id="main_top"><div id="cdate"></div>
 				<div id="main_menu">
 					<ul>
 						<?php 
@@ -31,7 +31,11 @@
 					echo "<li>" . implode("</li><li>", $data["item"]) . "</li>";
 					endif;?>
 				</ul></div>
-				<div id="main_right"><?php require_once TEMPLATE_PATH . DS . $this->assignTemplate . DS . $view->_myPage . ".phtml";?></div>
+				<div id="main_right">
+					<div id="SITE_TITLE"><?php echo $this->_chkf->getFuName($this->_url_pathAry[1]);?></div>
+					<div><?php require_once TEMPLATE_PATH . DS . $this->assignTemplate . DS . $view->_myPage . ".phtml";?></div>
+				</div>
+				<div style="clear: both;"></div>
 			</div>
 		</div>
 	</body>

@@ -1,0 +1,11 @@
+<?php $data = $view->getData();?>
+<div id="SITE_TITLE"><?php echo $this->_chkf->getFuName($this->_url_pathAry[2]);?></div>
+<div class="new_modify"><a href="/admin/contact/page_name/contact_modify/pageNo/<?php echo $data["PAGENO"];?>/id/-/">新增一筆</a></div>
+<ul class="news_list user_list">
+<?php 
+foreach ($data[0] as $val):?>
+	<li><a href="/admin/contact/page_name/contact_modify/pageNo/<?php echo $data["PAGENO"];?>/id/<?php echo $val["ID"];?>/"><?php echo $val["NAME"];?></a></li>
+<?php endforeach;?>
+</ul>
+<div class="clear_div"></div>
+<div class="pageList"><?php echo $data[1];?></div>

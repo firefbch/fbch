@@ -32,7 +32,11 @@
 				</div>
 			</div>
 			<div id="main_center">
-				<div id="main_right"><?php require_once TEMPLATE_PATH . DS . $this->assignTemplate . DS . $view->_myPage . ".phtml";?></div>
+				<div id="main_right">
+					<div id="SITE_TITLE"><?php echo $this->_chkf->getFuName($this->_url_pathAry[1]);?></div>
+					<div><?php require_once TEMPLATE_PATH . DS . $this->assignTemplate . DS . $view->_myPage . ".phtml";?></div>
+				</div>
+				<div style="clear:both;"></div>
 			</div>
 		</div>
 	</body>

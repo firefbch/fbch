@@ -1,0 +1,20 @@
+<style type="text/css">
+tr{
+	height: 30px;
+}
+</style>
+<div id="login">
+	<div id="contact_main">
+		<form action="/contact/modify/" method="post" name="contact_form" id="contact_form"><input type="hidden" name="action" id="action" value="modify">
+		<table border="0" align="center">
+			<tr><th align="right" valign="top">姓名: </th><td><input type="text" name="guest_name" id="guest_name" value="" size="60" style="width:515px;"></td></tr>
+			<tr><th align="right" valign="top">性別: </th><td><input type="radio" name="guest_sex" id="guest_sex" value="M" checked> 男&nbsp;&nbsp;<input type="radio" name="guest_sex" id="guest_sex" value="F" checked> 女</td></tr>
+			<tr><th align="right" valign="top">聯絡電話: </th><td><input type="text" name="guest_tel" id="guest_tel" value="" size="60" style="width:515px;"></td></tr>
+			<tr><th align="right" valign="top">聯絡住址: </th><td><input type="text" name="guest_addr" id="guest_addr" value="" size="60" style="width:515px;"></td></tr>
+			<tr><th align="right" valign="top">E-mail: </th><td><input type="text" name="guest_email" id="guest_email" value="" size="60" style="width:515px;"></td></tr>
+			<tr><th align="right" valign="top">留言內容: </th><td><textarea rows="10" cols="60" name="memoirs" id="memoirs" style="width:515px;"></textarea></td></tr>
+			<tr><td colspan="2" align="center"><input type="submit" value="留言"> <input type="reset" value="重設"></td></tr>
+		</table>
+		</form>
+	</div>
+</div>
