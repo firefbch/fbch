@@ -30,7 +30,9 @@
 					<?php if (in_array($this->_url_pathAry[1], array("about", "business", "member"))):$data = $view->getData();
 					echo "<li>" . implode("</li><li>", $data["item"]) . "</li>";
 					endif;?>
-				</ul></div>
+				</ul>
+				<div id="left_link"><?php require_once LAYOUT_PATH . DS . "link.phtml";?></div>
+				</div>
 				<div id="main_right">
 					<div id="SITE_TITLE"><?php echo $this->_chkf->getFuName($this->_url_pathAry[1]);?></div>
 					<div><?php require_once TEMPLATE_PATH . DS . $this->assignTemplate . DS . $view->_myPage . ".phtml";?></div>

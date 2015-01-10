@@ -169,6 +169,62 @@ class Module_Admin extends Module_ObjectDb{
 		}
 	}
 	
+	public function link(){
+		$page_name = $this->getVariables("page_name");
+		$page_name = (strcmp($page_name, "")) ? $page_name : "link_list";
+		$this->_myPage = $page_name;
+	
+		if ($page_name == "link_list"){
+			$pageNo = $this->getVariables("pageNo");
+			$pageNo = (strcmp($pageNo, "")) ? $pageNo : 1;
+			$data = $this->selectDb("link", array("strOrd" => array("UDATE DESC")));
+	
+			$this->_data = $this->getPageList($data, "/admin/link/page_name/link_list/", $pageNo);
+			$this->_data["PAGENO"] = $pageNo;
+		}
+		else if ($page_name == "link_modify"){
+			$id = $this->getVariables("id");
+			$pageNo = $this->getVariables("pageNo");
+			$this->_fieldAry[] = "LINK";
+			$this->_fieldAry[] = "ACTIVE";
+			$this->_data = $this->getRowData("link", array("strWhe" => array("ID = '" . $id . "'")), $this->_fieldAry);
+			$this->_data -> BACKURL = "/admin/link/page_name/link_list/pageNo/" . $pageNo . "/";
+		}
+		else if ($page_name == "update"){
+			$upload_dir = $this->_upLoadDir . "/link";
+			if (!file_exists("." . $upload_dir)){
+				mkdir("." . $upload_dir, 755);
+			}
+			$errmsg = "";
+			$id = $this->getVariables("id");
+			$pageNo = $this->getVariables("pageNo");
+			$cond = array();
+	
+			if ($this->getRows("link", array("strWhe" => array("ID = '" . $id . "'")))){
+				$cond["TITLE"] = addslashes($_POST["title"]);
+				$cond["LINK"] = addslashes($_POST["link"]);
+				$cond["MEMOIRS"] = addslashes($_POST["memoirs"]);
+				$cond["ACTIVE"] = $_POST["active"];
+				$cond["UDATE"] = date("YmdHis");
+	
+				$this->updateDb("link", $cond, array("ID = '" . $id . "'"));
+				$mesg = "完成更新" . ((strcmp($errmsg, "")) ? ",但" . $errmsg : ".");
+				$this->reDirect($mesg, "/admin/link/page_name/link_modify/pageNo/" . $pageNo . "/id/" . $id . "/");
+			}else{
+				$cond["TITLE"] = addslashes($_POST["title"]);
+				$cond["LINK"] = addslashes($_POST["link"]);
+				$cond["MEMOIRS"] = addslashes($_POST["memoirs"]);
+				$cond["ACTIVE"] = $_POST["active"];
+				$cond["FDATE"] = date("YmdHis");
+				$cond["UDATE"] = date("YmdHis");
+	
+				$this->insertDb("link", $cond);
+				$mesg = "完成新增";
+				$this->reDirect($mesg, "/admin/link/page_name/link_list/");
+			}
+		}
+	}
+	
 	public function about(){
 		$page_name = $this->getVariables("page_name");
 		$com_id = $this->getVariables("com_id");

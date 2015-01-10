@@ -17,6 +17,9 @@ class Module_ManageCenter{
 	
 	public function init(){
 		header("Content-type: text/html; charset=utf-8");
+		//讀取連結資料
+		$link = new Module_Link();
+		$linkData = $link->index();
 		
 		if ($this->_chkf->chk($this->_url_pathAry[1]) || $this->_url_pathAry[1] == "admin"){
 			

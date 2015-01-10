@@ -1,0 +1,15 @@
+<?php $data = $view->getData();?>
+<div id="SITE_TITLE"><?php echo $this->_chkf->getFuName($this->_url_pathAry[2]);?></div>
+<div class="new_modify"><a href="/admin/link/page_name/link_modify/pageNo/<?php echo $data["PAGENO"];?>/id/-/">新增一筆</a></div>
+<?php if (count($data[0]) > 0):?>
+<ul class="news_list user_list">
+<?php 
+foreach ($data[0] as $val):?>
+	<li><a href="/admin/link/page_name/link_modify/pageNo/<?php echo $data["PAGENO"];?>/id/<?php echo $val["ID"];?>/"><?php echo $val["TITLE"];?></a></li>
+<?php endforeach;?>
+</ul>
+<?php else:?>
+<div><font color="red">尚未輸入任何資料</font></div>
+<?php endif;?>
+<div class="clear_div"></div>
+<div class="pageList"><?php echo $data[1];?></div>

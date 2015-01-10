@@ -27,7 +27,7 @@
 						<ul>
 							<?php 
 							$lmuAry = $this->_chkf->getAry();
-							foreach ($lmuAry as $key => $valAry):if ($valAry["active"] == "Y"):?>
+							foreach ($lmuAry as $key => $valAry):if ($key != "home"):?>
 							<li><a href="/admin/<?php echo $key;?>/page_name/<?php echo $key;?>_list/"><?php echo $valAry["title"];?></a></li>
 							<?php endif;endforeach;?>
 						</ul>
