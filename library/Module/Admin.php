@@ -169,6 +169,213 @@ class Module_Admin extends Module_ObjectDb{
 		}
 	}
 	
+	public function exp(){
+		$page_name = $this->getVariables("page_name");
+		$page_name = (strcmp($page_name, "")) ? $page_name : "exp_list";
+		$this->_myPage = $page_name;
+	
+		if ($page_name == "exp_list"){
+			$pageNo = $this->getVariables("pageNo");
+			$pageNo = (strcmp($pageNo, "")) ? $pageNo : 1;
+			$data = $this->selectDb("exp", array("strOrd" => array("ACTIVE DESC", "UDATE DESC")));
+	
+			$this->_data = $this->getPageList($data, "/admin/exp/page_name/exp_list/", $pageNo);
+			$this->_data["PAGENO"] = $pageNo;
+		}
+		else if ($page_name == "exp_modify"){
+			$id = $this->getVariables("id");
+			$pageNo = $this->getVariables("pageNo");
+			$this->_fieldAry[] = "ACTIVE";
+			$this->_fieldAry[] = "NAME";
+			$this->_data = $this->getRowData("exp", array("strWhe" => array("ID = '" . $id . "'")), $this->_fieldAry);
+			$this->_data -> BACKURL = "/admin/exp/page_name/exp_list/pageNo/" . $pageNo . "/";
+		}
+		else if ($page_name == "update"){
+			$upload_dir = $this->_upLoadDir . "/exp";
+			if (!file_exists("." . $upload_dir)){
+				mkdir("." . $upload_dir, 755);
+			}
+			$errmsg = "";
+			$id = $this->getVariables("id");
+			$pageNo = $this->getVariables("pageNo");
+			$cond = array();
+			//$file_fileds = array("FILE1", "FILE2");
+	
+			$data = $this->selectDb("exp", array("strWhe" => array("ID = '" . $id . "'")));
+			/*while (list($key, $val) = each($file_fileds)) {
+				$field_name = $_FILES[strtolower($val)];
+				if (strcmp($field_name["name"], "")) {
+					$old_file_path = $upload_dir . "/" . $data[0][strtoupper($val)];
+					$new_file_name = md5($field_name["name"] . "-" . microtime()) . strrchr($field_name["name"], ".");
+					$upload_file_path = $new_file_name;
+					$errmsg = $this->uploadFile($field_name, $field_name["name"], $field_name["size"], $upload_dir, $upload_file_path, $old_file_path, "\.+[jpg|jpeg|gif|png]+$");
+					if (!strcmp($errmsg, "")) {
+						$cond[strtoupper($val)] = $new_file_name;
+					}
+				}
+			}*/
+	
+			if ($this->getRows("exp", array("strWhe" => array("ID = '" . $id . "'")))){
+				$cond["TITLE"] = addslashes($_POST["title"]);
+				$cond["NAME"] = addslashes($_POST["name"]);
+				$cond["MEMOIRS"] = addslashes($_POST["memoirs"]);
+				$cond["ACTIVE"] = $_POST["active"];
+				$cond["UDATE"] = date("YmdHis");
+	
+				$this->updateDb("exp", $cond, array("ID = '" . $id . "'"));
+				$mesg = "完成更新" . ((strcmp($errmsg, "")) ? ",但" . $errmsg : ".");
+				$this->reDirect($mesg, "/admin/exp/page_name/exp_modify/pageNo/" . $pageNo . "/id/" . $id . "/");
+			}else{
+				$cond["TITLE"] = addslashes($_POST["title"]);
+				$cond["NAME"] = addslashes($_POST["name"]);
+				$cond["MEMOIRS"] = addslashes($_POST["memoirs"]);
+				$cond["ACTIVE"] = $_POST["active"];
+				$cond["FDATE"] = date("YmdHis");
+				$cond["UDATE"] = date("YmdHis");
+	
+				$this->insertDb("exp", $cond);
+				$mesg = "完成新增";
+				$this->reDirect($mesg, "/admin/exp/page_name/exp_list/");
+			}
+		}
+		/*else if ($page_name == "delimg"){
+			$id = $this->getVariables("id");
+			$field_name = $this->getVariables("field_name");
+			$upload_dir = $this->_upLoadDir . "/news";
+			$data = $this->selectDb("news", array("strWhe" => array("ID = '" . $id . "'")));
+			$mesg = "刪除失敗";
+	
+			$img_path = $upload_dir . "/" . $data[0][strtoupper($field_name)];
+			if (file_exists("." . $img_path)) {
+				@unlink("." . $img_path);
+				$this->updateDb("news", array("FILE1" => ""), array("ID = '" . $id . "'"));
+				$mesg = "檔案已成功刪除";
+			}else{
+				$mesg = "檔案不存在" . $img_path;
+			}
+			$this->reDirect($mesg, "/admin/news/page_name/news_list/");
+		}*/
+	}
+	
+	public function album(){
+		$page_name = $this->getVariables("page_name");
+		$page_name = (strcmp($page_name, "")) ? $page_name : "news_list";
+		$this->_myPage = $page_name;
+	
+		if ($page_name == "album_list"){
+			$pageNo = $this->getVariables("pageNo");
+			$pageNo = (strcmp($pageNo, "")) ? $pageNo : 1;
+			$parent_id = $this->getVariables("parent_id");
+			$parent_id = (strcmp($parent_id, "")) ? $parent_id : 0;
+			$data = $this->selectDb("album", array("strWhe" => array("PARENT_ID = '" . $parent_id . "'"), "strOrd" => array("UDATE DESC")));
+	
+			$this->_data = $this->getPageList($data, "/admin/album/page_name/album_list/parent_id/" . $parent_id . "/", $pageNo);
+			$this->_data["PAGENO"] = $pageNo;
+			$this->_data["PARENT_ID"] = $parent_id;
+		}
+		else if ($page_name == "albums_list"){
+			$pageNo = $this->getVariables("pageNo");
+			$pageNo = (strcmp($pageNo, "")) ? $pageNo : 1;
+			$parent_id = (strcmp($_GET["parent_id"], "")) ? $_GET["parent_id"] : 0;
+			$data = $this->selectDb("album", array("strWhe" => array("PARENT_ID = '" . $parent_id . "'"), "strOrd" => array("UDATE DESC")));
+	
+			$this->_data = $this->getPageList($data, "/admin/album/page_name/album_list/", $pageNo);
+			$this->_data["PAGENO"] = $pageNo;
+		}
+		else if ($page_name == "albumt_modify"){
+			$id = $this->getVariables("id");
+			$pageNo = $this->getVariables("pageNo");
+			$this->_fieldAry[] = "PARENT_ID";
+			$this->_fieldAry[] = "IMAGE";
+			$this->_fieldAry[] = "ACTIVE";
+			$this->_data = $this->getRowData("album", array("strWhe" => array("ID = '" . $id . "'")), $this->_fieldAry);
+			$this->_data -> BACKURL = "/admin/album/page_name/album_list/pageNo/" . $pageNo . "/";
+		}
+		else if ($page_name == "album_modify"){
+			$id = $this->getVariables("id");
+			$parent_id = $this->getVariables("parent_id");
+			$pageNo = $this->getVariables("pageNo");
+			$this->_fieldAry[] = "WDATE";
+			$this->_fieldAry[] = "PARENT_ID";
+			$this->_fieldAry[] = "IMAGE";
+			$this->_fieldAry[] = "ACTIVE";
+			$this->_fieldAry[] = "FILE1";
+			$this->_fieldAry[] = "FILE2";
+			$this->_fieldAry[] = "FILE1_PS";
+			$this->_fieldAry[] = "FILE2_PS";
+			$this->_data = $this->getRowData("album", array("strWhe" => array("ID = '" . $id . "'")), $this->_fieldAry);
+			$this->_data -> BACKURL = "/admin/album/page_name/album_list/pageNo/" . $pageNo . "/parent_id/" . $parent_id . "/";
+			$this->_data -> PARENT_ID = $parent_id;
+		}
+		else if ($page_name == "update"){
+			$upload_dir = $this->_upLoadDir . "/album";
+			if (!file_exists("." . $upload_dir)){
+				mkdir("." . $upload_dir, 755);
+			}
+			$errmsg = "";
+			$id = $this->getVariables("id");
+			$pageNo = $this->getVariables("pageNo");
+			$cond = array();
+			$file_fileds = array("IMAGE", "FILE1", "FILE2");
+	
+			$data = $this->selectDb("album", array("strWhe" => array("ID = '" . $id . "'")));
+			while (list($key, $val) = each($file_fileds)) {
+				$field_name = $_FILES[strtolower($val)];
+				if (strcmp($field_name["name"], "")) {
+					$old_file_path = $upload_dir . "/" . $data[0][strtoupper($val)];
+					$new_file_name = md5($field_name["name"] . "-" . microtime()) . strrchr($field_name["name"], ".");
+					$upload_file_path = $new_file_name;
+					$errmsg = $this->uploadFile($field_name, $field_name["name"], $field_name["size"], $upload_dir, $upload_file_path, $old_file_path, "\.+[jpg|jpeg|gif|png]+$");
+					if (!strcmp($errmsg, "")) {
+						$cond[strtoupper($val)] = $new_file_name;
+					}
+				}
+			}
+	
+			if ($this->getRows("album", array("strWhe" => array("ID = '" . $id . "'")))){
+				$cond["PARENT_ID"] = $_POST["parent_id"];
+				$cond["TITLE"] = addslashes($_POST["title"]);
+				$cond["WDATE"] = addslashes($_POST["wdate"]);
+				$cond["MEMOIRS"] = addslashes($_POST["memoirs"]);
+				$cond["ACTIVE"] = $_POST["active"];
+				$cond["UDATE"] = date("YmdHis");
+	
+				$this->updateDb("album", $cond, array("ID = '" . $id . "'"));
+				$mesg = "完成更新" . ((strcmp($errmsg, "")) ? ",但" . $errmsg : ".");
+				$this->reDirect($mesg, "/admin/album/page_name/albumt_modify/pageNo/" . $pageNo . "/id/" . $id . "/");
+			}else{
+				$cond["PARENT_ID"] = $_POST["parent_id"];
+				$cond["TITLE"] = addslashes($_POST["title"]);
+				$cond["WDATE"] = addslashes($_POST["wdate"]);
+				$cond["MEMOIRS"] = addslashes($_POST["memoirs"]);
+				$cond["ACTIVE"] = $_POST["active"];
+				$cond["FDATE"] = date("YmdHis");
+				$cond["UDATE"] = date("YmdHis");
+	
+				$this->insertDb("album", $cond);
+				$mesg = "完成新增";
+				$this->reDirect($mesg, "/admin/album/page_name/album_list/");
+			}
+		}
+		else if ($page_name == "delimg"){
+			$id = $this->getVariables("id");
+			$field_name = $this->getVariables("field_name");
+			$upload_dir = $this->_upLoadDir . "/album";
+			$data = $this->selectDb("album", array("strWhe" => array("ID = '" . $id . "'")));
+			$mesg = "刪除失敗";
+	
+			$img_path = $upload_dir . "/" . $data[0][strtoupper($field_name)];
+			if (file_exists("." . $img_path)) {
+				@unlink("." . $img_path);
+				$this->updateDb("album", array("FILE1" => ""), array("ID = '" . $id . "'"));
+				$mesg = "檔案已成功刪除";
+			}else{
+				$mesg = "檔案不存在" . $img_path;
+			}
+			$this->reDirect($mesg, "/admin/album/page_name/news_list/");
+		}
+	}
+	
 	public function link(){
 		$page_name = $this->getVariables("page_name");
 		$page_name = (strcmp($page_name, "")) ? $page_name : "link_list";
