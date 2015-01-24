@@ -9,12 +9,29 @@
 <div id="SITE_TITLE"><?php echo $this->_chkf->getFuName($this->_url_pathAry[2]);?></div>
 <div class="new_modify"><a href="<?php echo $data -> BACKURL;?>">回清單</a></div>
 <div id="modify_detail">
-	<form action="<?php echo preg_replace("/news_modify/", "update", $_SERVER["REQUEST_URI"]);?>" method="post" name="modify_form" id="modify_form" enctype="multipart/form-data">
+	<form action="<?php echo preg_replace("/album_modify/", "update", $_SERVER["REQUEST_URI"]);?>" method="post" name="modify_form" id="modify_form" enctype="multipart/form-data">
+	<input type="hidden" name="parent_id" id="parent_id" value="<?php echo $data->PARENT_ID;?>">
 	<table width="98%">
 		<tr>
 			<td></td>
 			<td align="right">標題&nbsp;</td>
 			<td><input type="text" name="title" id="title" value="<?php echo $data->TITLE;?>"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td><?php $fieldName = "IMAGE";?></td>
+			<td align="right">清單圖示&nbsp;</td>
+			<td>
+				<input type="file" name="<?php echo strtolower($fieldName);?>" id="<?php echo strtolower($fieldName);?>" value=""><br>
+				<?php if (strcmp($data->$fieldName, "")):?><div>目前的檔案:<?php echo $data->$fieldName;?><br>
+				<?php 
+				$fileAry = explode(".", $data->$fieldName);
+				if (in_array($fileAry[1], array("jpg","png","gif","bmp", "jpeg"))):?>
+				<img src="/public/album/<?php echo $data->$fieldName;?>" width="100">
+				<a href="/admin/album/page_name/delimg/field_name/<?php echo $fieldName;?>/id/<?php echo $data->ID;?>/">刪除檔案</a>
+				<?php endif;?>
+				</div><?php endif;?>
+			</td>
 			<td></td>
 		</tr>
 		<tr>
@@ -39,8 +56,8 @@
 				<?php 
 				$fileAry = explode(".", $data->$fieldName);
 				if (in_array($fileAry[1], array("jpg","png","gif","bmp", "jpeg"))):?>
-				<img src="/public/news/<?php echo $data->$fieldName;?>" width="100">
-				<a href="/admin/news/page_name/delimg/field_name/<?php echo $fieldName;?>/id/<?php echo $data->ID;?>/">刪除檔案</a>
+				<img src="/public/album/<?php echo $data->$fieldName;?>" width="100">
+				<a href="/admin/album/page_name/delimg/field_name/<?php echo $fieldName;?>/id/<?php echo $data->ID;?>/">刪除檔案</a>
 				<?php endif;?>
 				</div><?php endif;?>
 			</td>
