@@ -17,6 +17,14 @@
 			}).click(function(){
 				window.location.href = $(this).find("a").first().attr("href");
 			});
+
+			$("#main_menu").find("li").each(function(){
+				$(this).mouseover(function(){
+					$(this).attr("class", "btn_bg2 bucolor div_maru");
+				}).mouseout(function(){
+					$(this).attr("class", "btn_bg whcolor div_maru");
+				});
+			});
 		});
 		</script>
 		<style type="text/css">
@@ -46,22 +54,23 @@
 		}
 		</style>
 		<!--[if gte IE 9]>
-  <style type="text/css">
-    .linksList ul li.lit, #main_link, .ftitle_bg, .listTitle, #exp_main .title{
-       filter: none;
-    }
-  </style>
-<![endif]-->
+		<style type="text/css">
+			.linksList ul li.lit, #main_link, .ftitle_bg, .listTitle, #exp_main .title, .menu_bg, .btn_bg, .btn_bg2{
+				filter: none;
+			}
+		</style>
+		<![endif]-->
 	</head>
 	<body>
 		<div id="web_main">
-			<div id="main_top"><div id="cdate"></div>
+			<div id="main_top"><div id="cdate"></div></div>
+			<div id="main_menu_bg" class="menu_bg">
 				<div id="main_menu">
 					<ul>
 						<?php 
 						$lmuAry = $this->_chkf->getAry();
 						foreach ($lmuAry as $key => $valAry):if ($valAry["active"] == "Y"):?>
-						<li><a href="/<?php echo $key;?>/"><?php echo $valAry["title"];?></a></li>
+						<li class="btn_bg whcolor div_maru"><a href="/<?php echo $key;?>/"><?php echo $valAry["title"];?></a></li>
 						<?php endif;endforeach;?>
 					</ul>
 				</div>

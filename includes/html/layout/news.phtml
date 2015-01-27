@@ -9,18 +9,48 @@
 			var weeksAry = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六");
 			var chineseDate = "<?php echo date("Y年m月d日");?>(" + weeksAry[<?php echo date(w);?>] + ") " + LunarDate.GetLunarDay(<?php echo date("Y, m, d");?>);
 			$("#cdate").html(chineseDate);
+
+			$("#main_menu").find("li").each(function(){
+				$(this).mouseover(function(){
+					$(this).attr("class", "btn_bg2 bucolor div_maru");
+				}).mouseout(function(){
+					$(this).attr("class", "btn_bg whcolor div_maru");
+				});
+			});
 		});
 		</script>
+		<style type="text/css">
+		#main_link{
+			background: #fcecfc; /* Old browsers */
+			/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+			background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZjZWNmYyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iI2ZiYTZlMSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUxJSIgc3RvcC1jb2xvcj0iI2ZkODlkNyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZjdjZDgiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+			background: -moz-linear-gradient(top,  #fcecfc 0%, #fba6e1 50%, #fd89d7 51%, #ff7cd8 100%); /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fcecfc), color-stop(50%,#fba6e1), color-stop(51%,#fd89d7), color-stop(100%,#ff7cd8)); /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(top,  #fcecfc 0%,#fba6e1 50%,#fd89d7 51%,#ff7cd8 100%); /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(top,  #fcecfc 0%,#fba6e1 50%,#fd89d7 51%,#ff7cd8 100%); /* Opera 11.10+ */
+			background: -ms-linear-gradient(top,  #fcecfc 0%,#fba6e1 50%,#fd89d7 51%,#ff7cd8 100%); /* IE10+ */
+			background: linear-gradient(to bottom,  #fcecfc 0%,#fba6e1 50%,#fd89d7 51%,#ff7cd8 100%); /* W3C */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcecfc', endColorstr='#ff7cd8',GradientType=0 ); /* IE6-8 */
+		}
+		</style>
+		<!--[if gte IE 9]>
+		<style type="text/css">
+			.linksList ul li.lit, #main_link, .ftitle_bg, .listTitle, #exp_main .title, .menu_bg, .btn_bg, .btn_bg2{
+				filter: none;
+			}
+		</style>
+		<![endif]-->
 	</head>
 	<body>
 		<div id="web_main">
-			<div id="main_top"><div id="cdate"></div>
+			<div id="main_top"><div id="cdate"></div></div>
+			<div id="main_menu_bg" class="menu_bg">
 				<div id="main_menu">
 					<ul>
 						<?php 
 						$lmuAry = $this->_chkf->getAry();
 						foreach ($lmuAry as $key => $valAry):if ($valAry["active"] == "Y"):?>
-						<li><a href="/<?php echo $key;?>/"><?php echo $valAry["title"];?></a></li>
+						<li class="btn_bg whcolor div_maru"><a href="/<?php echo $key;?>/"><?php echo $valAry["title"];?></a></li>
 						<?php endif;endforeach;?>
 					</ul>
 				</div>
