@@ -12,9 +12,23 @@ class Module_Album extends Module_ObjectDb{
 	public function index(){
 		$pageNo = $this->getVariables("pageNo");
 		$pageNo = (strcmp($pageNo, "")) ? $pageNo : 1;
-		$data = $this->selectDb($this->_tbName, array("strWhe" => array("ACTIVE = 'Y'"), "strOrd" => array("UDATE DESC")));
+		$parent_id = $this->getVariables("parent_id");
+		$parent_id = (strcmp($parent_id, "")) ? $parent_id : 0;
+		$data = $this->selectDb($this->_tbName, array("strWhe" => array("ACTIVE = 'Y'", "PARENT_ID = '$parent_id'"), "strOrd" => array("UDATE DESC")));
 		
 		$this->_data = $this->getPageList($data, "/" . $this->_tbName . "/index/", $pageNo);
+		$this->_data["PAGENO"] = $pageNo;
+		$this->_data["item"] = $this->_item;
+	}
+	
+	public function mlist(){
+		$pageNo = $this->getVariables("pageNo");
+		$pageNo = (strcmp($pageNo, "")) ? $pageNo : 1;
+		$parent_id = $this->getVariables("parent_id");
+		$parent_id = (strcmp($parent_id, "")) ? $parent_id : 0;
+		$data = $this->selectDb($this->_tbName, array("strWhe" => array("ACTIVE = 'Y'", "PARENT_ID = '$parent_id'"), "strOrd" => array("UDATE DESC")));
+	
+		$this->_data = $this->getPageList($data, "/" . $this->_tbName . "/mlist/", $pageNo);
 		$this->_data["PAGENO"] = $pageNo;
 		$this->_data["item"] = $this->_item;
 	}

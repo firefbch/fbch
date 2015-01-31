@@ -360,6 +360,30 @@ li.tolink{
 	text-align: right;
 }
 
+#main_album{
+	clear: both;
+	width: 100%;
+}
+
+#main_album .album_div{
+	float: left;
+	width: 220px;
+	height: 220px;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+#main_album .album_div .album_img{
+	clear: both;
+	width: 220px;
+	height: 180px;
+	overflow: hidden;
+}
+#main_album .album_div .album_title{
+	clear: both;
+	width: 220px;
+	padding-top: 5px;
+}
+
 .newpost{
 	clear: both;
 	height: 20px;
