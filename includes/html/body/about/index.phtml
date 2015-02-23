@@ -1,10 +1,14 @@
+<?php 
+//限定圖片的大小
+$imgSizeNum = 350;
+?>
 <div style="text-align:left;margin:10px;">
-	<?php if (strcmp($data["IMAGE1"], "")):$imgAry=getimagesize("./public/aboutus/" . $data["IMAGE1"]);?><div style="float:left;margin:10px;"><img src="/public/aboutus/<?php echo $data["IMAGE1"];?>" width="<?php echo (($imgAry[0] > 680) ? 680 : $imgAry[0]);?>"></div><?php endif;?>
-	<?php if (strcmp($data["IMAGE2"], "")):$imgAry=getimagesize("./public/aboutus/" . $data["IMAGE2"]);?><div style="float:right;margin:10px;"><img src="/public/aboutus/<?php echo $data["IMAGE2"];?>" width="<?php echo (($imgAry[0] > 680) ? 680 : $imgAry[0]);?>"></div><?php endif;?>
+	<?php if (strcmp($data["IMAGE1"], "")):$imgAry=getimagesize("./public/aboutus/" . $data["IMAGE1"]);?><div style="float:left;margin:10px;"><img src="/public/aboutus/<?php echo $data["IMAGE1"];?>" width="<?php echo (($imgAry[0] > $imgSizeNum) ? $imgSizeNum : $imgAry[0]);?>"></div><?php endif;?>
+	<?php if (strcmp($data["IMAGE2"], "")):$imgAry=getimagesize("./public/aboutus/" . $data["IMAGE2"]);?><div style="float:right;margin:10px;"><img src="/public/aboutus/<?php echo $data["IMAGE2"];?>" width="<?php echo (($imgAry[0] > $imgSizeNum) ? $imgSizeNum : $imgAry[0]);?>"></div><?php endif;?>
 	<?php echo nl2br(stripcslashes($data["MEMOIRS"]));?>
 	
-	<?php if (strcmp($data["IMAGE3"], "")):$imgAry=getimagesize("./public/aboutus/" . $data["IMAGE3"]);?><div style="float:right;margin:10px;"><img src="/public/aboutus/<?php echo $data["IMAGE3"];?>" width="<?php echo (($imgAry[0] > 680) ? 680 : $imgAry[0]);?>"></div><?php endif;?>
-	<?php if (strcmp($data["IMAGE4"], "")):$imgAry=getimagesize("./public/aboutus/" . $data["IMAGE4"]);?><div style="float:right;margin:10px;"><img src="/public/aboutus/<?php echo $data["IMAGE4"];?>" width="<?php echo (($imgAry[0] > 680) ? 680 : $imgAry[0]);?>"></div><?php endif;?>
-	<?php if (strcmp($data["IMAGE5"], "")):$imgAry=getimagesize("./public/aboutus/" . $data["IMAGE5"]);?><div style="float:right;margin:10px;"><img src="/public/aboutus/<?php echo $data["IMAGE5"];?>" width="<?php echo (($imgAry[0] > 680) ? 680 : $imgAry[0]);?>"></div><?php endif;?>
-	<?php if (strcmp($data["IMAGE6"], "")):$imgAry=getimagesize("./public/aboutus/" . $data["IMAGE6"]);?><div style="float:right;margin:10px;"><img src="/public/aboutus/<?php echo $data["IMAGE6"];?>" width="<?php echo (($imgAry[0] > 680) ? 680 : $imgAry[0]);?>"></div><?php endif;?>
+	<?php if (strcmp($data["IMAGE3"], "")):$imgAry=getimagesize("./public/aboutus/" . $data["IMAGE3"]);?><div style="float:right;margin:10px;"><img src="/public/aboutus/<?php echo $data["IMAGE3"];?>" width="<?php echo (($imgAry[0] > $imgSizeNum) ? $imgSizeNum : $imgAry[0]);?>"></div><?php endif;?>
+	<?php if (strcmp($data["IMAGE4"], "")):$imgAry=getimagesize("./public/aboutus/" . $data["IMAGE4"]);?><div style="float:right;margin:10px;"><img src="/public/aboutus/<?php echo $data["IMAGE4"];?>" width="<?php echo (($imgAry[0] > $imgSizeNum) ? $imgSizeNum : $imgAry[0]);?>"></div><?php endif;?>
+	<?php if (strcmp($data["IMAGE5"], "")):$imgAry=getimagesize("./public/aboutus/" . $data["IMAGE5"]);?><div style="float:right;margin:10px;"><img src="/public/aboutus/<?php echo $data["IMAGE5"];?>" width="<?php echo (($imgAry[0] > $imgSizeNum) ? $imgSizeNum : $imgAry[0]);?>"></div><?php endif;?>
+	<?php if (strcmp($data["IMAGE6"], "")):$imgAry=getimagesize("./public/aboutus/" . $data["IMAGE6"]);?><div style="float:right;margin:10px;"><img src="/public/aboutus/<?php echo $data["IMAGE6"];?>" width="<?php echo (($imgAry[0] > $imgSizeNum) ? $imgSizeNum : $imgAry[0]);?>"></div><?php endif;?>
 </div>

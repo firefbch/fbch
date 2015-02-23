@@ -41,5 +41,16 @@ class Module_FunctionList extends Module_ObjectDb{
 	public function getFuName($name){
 		return $this->_titleAry[$name]["title"];
 	}
+	
+	//指定文字長度
+	public function getLimitStr($str, $limit, $repstr){
+		if (mb_strlen($str, "utf8") > $limit) {
+			$retval = mb_substr($str, 0, ($limit - mb_strlen($repstr, "utf8")), "utf8") . $repstr;
+		}
+		else {
+			$retval = $str;
+		}
+		return $retval;
+	}
 
 }

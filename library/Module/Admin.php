@@ -513,6 +513,83 @@ class Module_Admin extends Module_ObjectDb{
 		$this->_data -> item = $item;
 	}
 	
+	public function sys_conf(){
+		$page_name = "conf_list";
+	
+		if ($_POST["action"] == "update"){
+			$upload_dir = $this->_upLoadDir . "/sys_conf";
+			if (!file_exists("." . $upload_dir)){
+				mkdir("." . $upload_dir, 755);
+			}
+			$errmsg = "";
+			$cond = array();
+			//$file_fileds = array("IMAGE1", "IMAGE2", "IMAGE3", "IMAGE4", "IMAGE5", "IMAGE6");
+			$id = 1;
+			//$com_id = $this->getVariables("com_id");
+	
+			//$data = $this->selectDb("conf", array("strWhe" => array("ID = '" . $id . "'")));
+			/*while (list($key, $val) = each($file_fileds)) {
+				$field_name = $_FILES[strtolower($val)];
+				if (strcmp($field_name["name"], "")) {
+					$old_file_path = $upload_dir . "/" . $data[0][strtoupper($val)];
+					$new_file_name = md5($field_name["name"] . "-" . microtime()) . strrchr($field_name["name"], ".");
+					$upload_file_path = $new_file_name;
+					$errmsg = $this->uploadFile($field_name, $field_name["name"], $field_name["size"], $upload_dir, $upload_file_path, $old_file_path, "\.+[jpg|jpeg|gif|png]+$");
+					if (!strcmp($errmsg, "")) {
+						$cond[strtoupper($val)] = $new_file_name;
+					}
+				}
+			}*/
+	
+			if ($this->getRows("site_config", array("strWhe" => array("ID = '" . $id . "'")))){
+				$cond["TITLE"] = addslashes($_POST["title"]);
+				$cond["TEL"] = addslashes($_POST["tel"]);
+				$cond["FAX"] = addslashes($_POST["fax"]);
+				$cond["ADDRESS"] = addslashes($_POST["address"]);
+				$cond["EMAIL"] = addslashes($_POST["email"]);
+				$cond["UDATE"] = date("YmdHis");
+					
+				$this->updateDb("site_config", $cond, array("ID = '" . $id . "'"));
+				$mesg = "完成更新" . ((strcmp($errmsg, "")) ? ",但" . $errmsg : ".");
+				$this->reDirect($mesg, "/admin/sys_conf/id/$id/");
+			}else{
+				$cond["TITLE"] = addslashes($_POST["title"]);
+				$cond["TEL"] = addslashes($_POST["tel"]);
+				$cond["FAX"] = addslashes($_POST["fax"]);
+				$cond["ADDRESS"] = addslashes($_POST["address"]);
+				$cond["EMAIL"] = addslashes($_POST["email"]);
+				$cond["FDATE"] = date("YmdHis");
+				$cond["UDATE"] = date("YmdHis");
+					
+				$this->insertDb("site_config", $cond);
+				$mesg = "完成新增";
+				$this->reDirect($mesg, "/admin/sys_conf/");
+			}
+		}
+		/*else if ($page_name == "delimg"){
+			$id = $this->getVariables("id");
+			$field_name = $this->getVariables("field_name");
+			$upload_dir = $this->_upLoadDir . "/about";
+			$data = $this->selectDb("aboutus", array("strWhe" => array("ID = '" . $id . "'")));
+			$mesg = "刪除失敗";
+	
+			$img_path = $upload_dir . "/" . $data[0][strtoupper($field_name)];
+			if (file_exists("." . $img_path)) {
+				@unlink("." . $img_path);
+				$this->updateDb("aboutus", array(strtoupper($field_name) => ""), array("ID = '" . $id . "'"));
+				$mesg = "檔案已成功刪除";
+			}else{
+				$this->updateDb("aboutus", array(strtoupper($field_name) => ""), array("ID = '" . $id . "'"));
+				$mesg = "檔案不存在" . $img_path;
+			}
+			$this->reDirect($mesg, "/admin/about/page_name/news_list/");
+		}*/
+	
+		$this->_myPage = "sys_conf";
+		$this->_fieldAry = $this->_fieldAry + array("","","","","","TEL","FAX","ADDRESS","EMAIL");
+		$this->_data = $this->getRowData("site_config", array("strWhe" => array("ID = '1'")), $this->_fieldAry);
+	}
+	
 	public function business(){
 		$page_name = $this->getVariables("page_name");
 		$com_id = $this->getVariables("com_id");

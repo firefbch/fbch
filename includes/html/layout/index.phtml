@@ -55,7 +55,7 @@
 		</style>
 		<!--[if gte IE 9]>
 		<style type="text/css">
-			.linksList ul li.lit, #main_link, .ftitle_bg, .listTitle, #exp_main .title, .menu_bg, .btn_bg, .btn_bg2{
+			.linksList ul li.lit, #main_link, .ftitle_bg, .listTitle, #exp_main .title, .menu_bg, .btn_bg, .btn_bg2, .footer_bottom{
 				filter: none;
 			}
 		</style>
@@ -89,10 +89,19 @@
 				<div id="left_link"><?php require_once LAYOUT_PATH . DS . "link.phtml";?></div>
 				</div>
 				<div id="main_right">
-					<div id="SITE_TITLE" class="ftitle_bg"><?php echo $this->_chkf->getFuName($this->_url_pathAry[1]);?></div>
+					<?php if ($this->_url_pathAry[1] != "home" && $this->_url_pathAry[1] != ""):?><div id="SITE_TITLE" class="ftitle_bg"><?php echo $this->_chkf->getFuName($this->_url_pathAry[1]);?></div><?php endif;?>
 					<div><?php require_once TEMPLATE_PATH . DS . $this->assignTemplate . DS . $view->_myPage . ".phtml";?></div>
 				</div>
 				<div style="clear: both;"></div>
+			</div>
+		</div>
+		<div class="clear_div"></div>
+		<div id="footer" class="footer_bottom">
+			<div id="footer_data">
+			<?php echo $this->siteDatas -> SITE_CONFIG -> TITLE;?><br>
+			電話:<?php echo $this->siteDatas -> SITE_CONFIG -> TEL;?> 傳真:<?php echo $this->siteDatas -> SITE_CONFIG -> FAX;?><br>
+			電子郵件:<?php echo $this->siteDatas -> SITE_CONFIG -> EMAIL;?> 住址:<?php echo $this->siteDatas -> SITE_CONFIG -> ADDRESS;?><br>
+			<?php echo nl2br($this->siteDatas -> SITE_CONFIG -> MEMOIRS);?>
 			</div>
 		</div>
 	</body>
