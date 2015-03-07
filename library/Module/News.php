@@ -21,6 +21,7 @@ class Module_News extends Module_ObjectDb{
 		$id = $this->getVariables("id");
 		$pageNo = $this->getVariables("pageNo");
 		$this->_fieldAry[] = "ACTIVE";
+		$this->_fieldAry[] = "WDATE";
 		$this->_fieldAry[] = "FILE1";
 		$this->_fieldAry[] = "FILE2";
 		$this->_fieldAry[] = "FILE1_PS";

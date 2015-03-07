@@ -1,0 +1,47 @@
+<?php $data = $view->getData();?>
+<div id="modify_detail">
+	<form action="<?php echo $_SERVER["REQUEST_URI"];?>id/<?php echo $data->ID;?>" method="post" name="modify_form" id="modify_form" enctype="multipart/form-data">
+		<input type="hidden" name="action" id="action" value="update">
+		<table width="98%">
+		<tr>
+			<td></td>
+			<td align="right">網站名稱&nbsp;</td>
+			<td><input type="text" name="title" id="title" value="<?php echo $data->TITLE;?>" size="60"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td align="right">電話&nbsp;</td>
+			<td><input type="text" name="tel" id="tel" value="<?php echo $data->TEL;?>" size="60"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td align="right">傳真&nbsp;</td>
+			<td><input type="text" name="fax" id="fax" value="<?php echo $data->FAX;?>" size="60"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td align="right">住址&nbsp;</td>
+			<td><input type="text" name="address" id="address" value="<?php echo $data->ADDRESS;?>" size="60"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td align="right">電子郵件&nbsp;</td>
+			<td><input type="text" name="email" id="email" value="<?php echo $data->EMAIL;?>" size="60"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td align="right">備註&nbsp;</td>
+			<td><textarea rows="6" cols="60" name="memoirs" id="memoirs"><?php echo stripslashes($data->MEMOIRS);?></textarea></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td colspan="4" align="center"><input type="submit" value="儲存">&nbsp;&nbsp;<input type="reset" value="重填"></td>
+		</tr>
+	</table>
+	</form>
+</div>

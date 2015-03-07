@@ -1,0 +1,61 @@
+<script type="text/javascript">
+$(function(){
+	var galleries = $('.ad-gallery').adGallery();
+});
+</script>
+<style type="text/css">
+.ad-gallery{
+	width: 720px;
+}
+
+#container{
+	width: 650px;
+	background-color: #f3c96f;
+	border: 2px #E5AB30 solid;
+}
+
+.menu_list{
+	width: 500px;
+	padding-top: 20px;
+	
+}
+
+.ad-controls{
+	color: #000000;
+}
+
+.menu_border{
+	
+	height: 110px;
+	background-color: #f3c96f;
+}
+</style>
+<?php $data = $view->getData();?>
+<div class="album_img"><img src="/public/album/<?php echo $data->IMAGE;?>" width="250"></div>
+<div class="album">
+	<div class="title"><?php echo $data -> TITLE;?></div>
+	<div class="date"><?php echo $data -> WDATE;?></div>
+	<div class="memoirs"><?php echo nl2br($data->MEMOIRS);?></div>
+	<div><a href="<?php echo $data->BACKURL;?>">回瀏覽頁</a></div>
+</div>
+<div style="clear:both;width:100%;"></div>
+<div id="gallery" class="ad-gallery" style="margin-left:20px;">
+	<div class="ad-image-wrapper"></div>
+	<div class="ad-controls"></div>
+	<div class="menu_border">
+		<div class="menu_list">
+			<div class="ad-nav">
+				<div class="ad-thumbs">
+				<ul class="ad-thumb-list">
+				<?php foreach ($data->file_fileds as $val):?>
+					<?php if (strcmp($val, "")):?>
+					<li><a href="/public/album/<?php echo $data->$val;?>"><img src="/public/album/<?php echo $data->$val;?>" height="60"></a></li>
+					<?php endif;?>
+				<?php endforeach; ?>
+				</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="descriptions"></div>

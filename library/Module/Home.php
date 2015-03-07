@@ -9,7 +9,13 @@ class Module_Home extends Module_ObjectDb{
 	//主頁
 	public function index(){
 		$this->_layout = "index";
-		$this->_data = $this->selectDb("news", array("strWhe" => array("ACTIVE = 'Y'")));
+		$this->_data["NEWS"] = $this->selectDb("news", array("strWhe" => array("ACTIVE = 'Y'"), "strOrd" => array("UDATE DESC"), "strLim" => "1,0"));
+		
+		$aboutAry = $this->selectDb("aboutus", array("strWhe" => array("ACTIVE = 'Y'", "COM_ID = '0'")));
+		$data = array();
+		foreach ($aboutAry as $val){
+			$this->_data["ABOUT"] = $val;
+		}
 	}
 	
 	public function getData(){

@@ -1,0 +1,18 @@
+<?php $data = $view->getData();?>
+<div id="exp_main">
+	<div class="title"><?php echo $data->TITLE;?></div>
+	<div class="data"><div class="name">暱稱:<?php echo $data->NAME;?></div><div class="time">發表:<?php echo $data->DATE;?></div></div>
+	<div class="clear_div"></div>
+	<div class="memoirs"><?php echo nl2br($data->MEMOIRS);?></div>
+	<div class="tools"><a href="/exp/rpost/id/<?php echo $data->ID;?>/">回覆文章</a></div>
+</div>
+<?php foreach ($data->sdata as $sval):?>
+<div id="exp_main">
+	<div class="title"><?php echo $sval["TITLE"];?></div>
+	<div class="data"><div class="name">暱稱:<?php echo $sval["NAME"];?></div><div class="time">發表:<?php echo $sval["DATE"];?></div></div>
+	<div class="clear_div"></div>
+	<div class="memoirs"><?php echo nl2br($sval["MEMOIRS"]);?></div>
+</div>
+<?php endforeach;?>
+<div class="clear_div"></div>
+<div><input type="button" value="回清單" onclick="window.location.href='<?php echo $data->BACKURL;?>';"></div>

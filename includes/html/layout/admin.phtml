@@ -11,6 +11,12 @@
 			$("#cdate").html(chineseDate);
 		});
 		</script>
+		<style type="text/css">
+		#main_right{
+			padding: 10px;
+			width: 730px;
+		}
+		</style>
 	</head>
 	<body>
 		<div id="web_main">
@@ -28,8 +34,9 @@
 							<?php 
 							$lmuAry = $this->_chkf->getAry();
 							foreach ($lmuAry as $key => $valAry):if ($key != "home"):?>
-							<li><a href="/admin/<?php echo $key;?>/page_name/<?php echo $key;?>_list/"><?php echo $valAry["title"];?></a></li>
+							<li class="whcolor"><a href="/admin/<?php echo $key;?>/page_name/<?php echo $key;?>_list/"><?php echo $valAry["title"];?></a></li>
 							<?php endif;endforeach;?>
+							<li class="whcolor"><a href="/admin/sys_conf/">基本資料設定</a></li>
 						</ul>
 					</div>
 				</div>

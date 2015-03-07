@@ -1,1 +1,12 @@
-我是首頁
+<?php $data = $view->getData();
+$tools = new Module_FunctionList();?>
+<div id="home_left">
+	<div class="title">關於我們</div>
+	<div class="mesg"><?php echo nl2br($data["ABOUT"]["MEMOIRS"]);?><br><?php if (strcmp($data["ABOUT"]["IMAGE1"], "")):$imgAry=getimagesize("./public/aboutus/" . $data["ABOUT"]["IMAGE1"]);?><div style="float:left;margin:10px;"><img src="/public/aboutus/<?php echo $data["ABOUT"]["IMAGE1"];?>" width="<?php echo (($imgAry[0] > 300) ? 300 : $imgAry[0]);?>"></div><?php endif;?></div>
+</div>
+<div id="home_right">
+	<div style="height:30px;font-size:20px;color:#FF0000;">最新消息</div>
+	<div class="title"><?php echo $data["NEWS"][0]["TITLE"];?></div>
+	<div class="date">Date: <?php echo $data["NEWS"][0]["WDATE"];?></div>
+	<div class="mesg"><?php echo nl2br($tools->getLimitStr($data["NEWS"][0]["MEMOIRS"], 220, "..."));?></div>
+</div>

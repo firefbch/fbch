@@ -1,6 +1,6 @@
 <?php $data = $view->getData();?>
 <div id="modify_detail">
-	<div style="text-align:right;"><?php echo implode(" | ", $data->item);?></div>
+	<div style="text-align:right;"><a href="/admin/about/com_id/0/">首頁用</a> | <?php echo implode(" | ", $data->item);?></div>
 	<form action="<?php echo $_SERVER["REQUEST_URI"];?>com_id/<?php echo $data->COM_ID;?>/id/<?php echo $data->ID;?>" method="post" name="modify_form" id="modify_form" enctype="multipart/form-data">
 		<input type="hidden" name="action" id="action" value="update">
 		<table width="98%">
