@@ -2,7 +2,7 @@
 ini_set("display_errors", "on");
 class Module_ManageCenter{
 	private $_url_pathAry, $_chkf;
-	public $siteDatas, $view, $assignTemplate = "Home", $assignPage = "index", $_controllCss = array("default"), $_controllJs = array("jquery-1.8.3", "jquery-ui-1.9.2.custom", "chineseDate", "lib", "jquery.ui.datepicker");
+	public $siteDatas, $view, $assignTemplate = "Home", $assignPage = "index", $_controllCss = array("default"), $_controllJs = array("jquery-1.8.3", "jquery-ui-1.9.2.custom", "chineseDate", "lib", "jquery.ui.datepicker", "jquery.ad-gallery");
 	
 	public function __construct(){
 		$this->_url_pathAry = explode("/", $_SERVER["REQUEST_URI"]);

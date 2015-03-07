@@ -261,6 +261,7 @@ class Module_Admin extends Module_ObjectDb{
 		$page_name = $this->getVariables("page_name");
 		$page_name = (strcmp($page_name, "")) ? $page_name : "news_list";
 		$this->_myPage = $page_name;
+		$file_fileds = array("IMAGE", "FILE1", "FILE2", "FILE3", "FILE4", "FILE5", "FILE6", "FILE7", "FILE8", "FILE9", "FILE10");
 	
 		if ($page_name == "album_list"){
 			$pageNo = $this->getVariables("pageNo");
@@ -299,10 +300,12 @@ class Module_Admin extends Module_ObjectDb{
 			$this->_fieldAry[] = "PARENT_ID";
 			$this->_fieldAry[] = "IMAGE";
 			$this->_fieldAry[] = "ACTIVE";
-			$this->_fieldAry[] = "FILE1";
-			$this->_fieldAry[] = "FILE2";
-			$this->_fieldAry[] = "FILE1_PS";
-			$this->_fieldAry[] = "FILE2_PS";
+			
+			foreach ($file_fileds as $val){
+				$this->_fieldAry[] = $val;
+				$this->_fieldAry[] = $val . "_PS";
+			}	
+			
 			$this->_data = $this->getRowData("album", array("strWhe" => array("ID = '" . $id . "'")), $this->_fieldAry);
 			$this->_data -> BACKURL = "/admin/album/page_name/album_list/pageNo/" . $pageNo . "/parent_id/" . $parent_id . "/";
 			$this->_data -> PARENT_ID = $parent_id;
@@ -316,7 +319,6 @@ class Module_Admin extends Module_ObjectDb{
 			$id = $this->getVariables("id");
 			$pageNo = $this->getVariables("pageNo");
 			$cond = array();
-			$file_fileds = array("IMAGE", "FILE1", "FILE2");
 	
 			$data = $this->selectDb("album", array("strWhe" => array("ID = '" . $id . "'")));
 			while (list($key, $val) = each($file_fileds)) {
@@ -342,7 +344,7 @@ class Module_Admin extends Module_ObjectDb{
 	
 				$this->updateDb("album", $cond, array("ID = '" . $id . "'"));
 				$mesg = "完成更新" . ((strcmp($errmsg, "")) ? ",但" . $errmsg : ".");
-				$this->reDirect($mesg, "/admin/album/page_name/albumt_modify/pageNo/" . $pageNo . "/id/" . $id . "/");
+				$this->reDirect($mesg, "/admin/album/page_name/album_modify/pageNo/" . $pageNo . "/parent_id/" . $_POST["parent_id"] . "/id/" . $id . "/");
 			}else{
 				$cond["PARENT_ID"] = $_POST["parent_id"];
 				$cond["TITLE"] = addslashes($_POST["title"]);

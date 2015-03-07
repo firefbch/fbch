@@ -68,6 +68,7 @@
 				<div id="main_menu">
 					<ul>
 						<?php 
+						$data = $view->getData();
 						$lmuAry = $this->_chkf->getAry();
 						foreach ($lmuAry as $key => $valAry):if ($valAry["active"] == "Y"):?>
 						<li class="btn_bg whcolor div_maru"><a href="/<?php echo $key;?>/"><?php echo $valAry["title"];?></a></li>
@@ -76,9 +77,13 @@
 				</div>
 			</div>
 			<div id="main_center">
+				<div id="main_right">
+					<?php if ($this->_url_pathAry[1] != "home" && $this->_url_pathAry[1] != ""):?><div id="SITE_TITLE" class="ftitle_bg"><?php echo $this->_chkf->getFuName($this->_url_pathAry[1]);?></div><?php endif;?>
+					<div><?php require_once TEMPLATE_PATH . DS . $this->assignTemplate . DS . $view->_myPage . ".phtml";?></div>
+				</div>
 				<div id="main_left">
 					<div class="linksList"><ul><li class="lit">子選單</li>
-					<?php if (in_array($this->_url_pathAry[1], array("about", "business", "member", "album", "exp"))):$data = $view->getData();
+					<?php if (in_array($this->_url_pathAry[1], array("about", "business", "member", "album", "exp"))):
 						if (in_array($this->_url_pathAry[2], array("detail"))):
 							echo "<li class='lits whcolor'>" . implode("</li><li class='lits whcolor'>", $data -> item) . "</li>";
 						else:
@@ -88,10 +93,7 @@
 				</ul></div>
 				<div id="left_link"><?php require_once LAYOUT_PATH . DS . "link.phtml";?></div>
 				</div>
-				<div id="main_right">
-					<?php if ($this->_url_pathAry[1] != "home" && $this->_url_pathAry[1] != ""):?><div id="SITE_TITLE" class="ftitle_bg"><?php echo $this->_chkf->getFuName($this->_url_pathAry[1]);?></div><?php endif;?>
-					<div><?php require_once TEMPLATE_PATH . DS . $this->assignTemplate . DS . $view->_myPage . ".phtml";?></div>
-				</div>
+				
 				<div style="clear: both;"></div>
 			</div>
 		</div>

@@ -2,7 +2,7 @@
 	<?php $data = $view->getData();
 	foreach ($data[0] as $val):?>
 	<div class="album_div">
-		<div class="album_img"><img src="/public/album/<?php echo $val["IMAGE"];?>" width="200"></div>
+		<div class="album_img"><a href="/album/mlist/parent_id/<?php echo $val["ID"];?>/"><img src="/public/album/<?php echo $val["IMAGE"];?>" width="200"></a></div>
 		<div class="album_title"><a href="/album/mlist/parent_id/<?php echo $val["ID"];?>/"><?php echo $val["TITLE"];?></a></div>
 	</div>
 	<?php endforeach;?>
