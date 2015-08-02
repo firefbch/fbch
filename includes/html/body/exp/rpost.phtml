@@ -1,0 +1,30 @@
+<?php $data = $view->getData();?>
+<div class="newpost"><a href="/<?php echo $this->_url_pathAry[1];?>/detail/id/<?php echo $data[0]["ID"];?>/">回清單</a></div>
+<form action="/<?php echo $this->_url_pathAry[1];?>/rtitle/" method="post" name="login_form" id="login_form"><input type="hidden" name="action" id="action" value="update"><input type="hidden" name="id" id="id" value="<?php echo $data[0]["ID"];?>">
+<table border="0">
+	<tr>
+		<td colspan="4" align="center"><font size="4">回覆主題</font></td>
+	</tr>
+	<tr><td colspan="4"></td></tr>
+	<tr>
+		<td></td>
+		<th align="right" class="listTitle">主題:</th>
+		<td align="left"><input type="text" name="title" id="title" value="回覆:<?php echo $data[0]["TITLE"];?>" style="width: 500px;"></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td></td>
+		<th align="right" class="listTitle">暱稱:</th>
+		<td align="left"><input type="text" name="name" id="name" value="" style="width: 500px;"></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td></td>
+		<th align="right" class="listTitle">留言內容:</th>
+		<td align="left"><textarea rows="10" cols="60" name="memoirs" id="memoirs" style="width: 500px;"></textarea></td>
+		<td></td>
+	</tr>
+	<tr><td colspan="4"></td></tr>
+	<tr><td colspan="4" align="center"><input type="submit" value="發表"> <input type="reset" value="重填"></td></tr>
+</table>
+</form>

@@ -1,0 +1,19 @@
+<html>
+	<head>
+		<title>正將要導向另一頁</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<script type="text/javascript">
+		<?php if (strcmp($mesg, "")):?>alert("<?php echo $mesg;?>");<?php endif;?>
+		function gotox(){
+			window.location.href = "<?php echo $url;?>";
+		}
+		setTimeout("gotox()", 30);
+		</script>
+	</head>
+	<body>
+		<div id="web_main">
+			<noscript><div><?php echo $mesg;?></div>
+			<div>若沒有自動導向的話,請點選<a href="<?php echo $url;?>">這裡</a>.</div></noscript>
+		</div>
+	</body>
+</html>

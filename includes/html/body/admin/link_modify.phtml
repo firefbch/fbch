@@ -1,0 +1,38 @@
+<?php $data = $view->getData();?>
+<link rel="StyleSheet" href="/styles/base/jquery.ui.datepicker.css" type="text/css">
+<link rel="StyleSheet" href="/styles/base/jquery.ui.theme.css" type="text/css">
+<div id="SITE_TITLE"><?php echo $this->_chkf->getFuName($this->_url_pathAry[2]);?></div>
+<div class="new_modify"><a href="<?php echo $data -> BACKURL;?>">回清單</a></div>
+<div id="modify_detail">
+	<form action="<?php echo preg_replace("/link_modify/", "update", $_SERVER["REQUEST_URI"]);?>" method="post" name="modify_form" id="modify_form" enctype="multipart/form-data">
+	<table width="98%">
+		<tr>
+			<td></td>
+			<td align="right">連結名稱&nbsp;</td>
+			<td><input type="text" name="title" id="title" value="<?php echo $data->TITLE;?>" size="70"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td align="right">連結&nbsp;</td>
+			<td><input type="text" name="link" id="link" value="<?php echo $data->LINK;?>" size="70"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td align="right">連結說明&nbsp;</td>
+			<td><textarea rows="6" cols="60" name="memoirs" id="memoirs"><?php echo $data->MEMOIRS;?></textarea></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td align="right">顯示&nbsp;</td>
+			<td><input type="radio" name="active" id="active" value="Y"<?php if ($data->ACTIVE == "Y" || $data->ACTIVE == ""):?> checked<?php endif;?>> 啟用 <input type="radio" name="active" id="active" value="N"<?php if ($data->ACTIVE == "N"):?> checked<?php endif;?>> 開閉</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td colspan="4" align="center"><input type="submit" value="儲存">&nbsp;&nbsp;<input type="reset" value="重填"></td>
+		</tr>
+	</table>
+	</form>
+</div>

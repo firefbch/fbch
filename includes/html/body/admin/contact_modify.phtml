@@ -1,0 +1,48 @@
+<?php $data = $view->getData();?>
+<div id="SITE_TITLE"><?php echo $this->_chkf->getFuName($this->_url_pathAry[2]);?></div>
+<div class="new_modify"><a href="<?php echo $data -> BACKURL;?>">回清單</a></div>
+<div id="modify_detail">
+	<form action="<?php echo preg_replace("/contact_modify/", "modify", $_SERVER["REQUEST_URI"]);?>" method="post" name="modify_form" id="modify_form" enctype="multipart/form-data">
+	<table width="98%">
+		<tr>
+			<td></td>
+			<td align="right">姓名&nbsp;</td>
+			<td><input type="text" name="guest_name" id="guest_name" value="<?php echo $data->NAME;?>" style="width:515px;"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td align="right">性別&nbsp;</td>
+			<td><input type="radio" name="guest_sex" id="guest_sex" value="M"<?php if ($data->SEX == "M") echo " checked";?>> 男&nbsp;&nbsp;<input type="radio" name="guest_sex" id="guest_sex" value="F"<?php if ($data->SEX == "F") echo " checked";?>> 女</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td align="right">電話&nbsp;</td>
+			<td><input type="text" name="guest_tel" id="guest_tel" value="<?php echo $data->TEL;?>" style="width:515px;"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td align="right">住址&nbsp;</td>
+			<td><input type="text" name="guest_addr" id="guest_addr" value="<?php echo $data->ADDRESS;?>" style="width:515px;"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td align="right">E-mail&nbsp;</td>
+			<td><input type="text" name="guest_email" id="guest_email" value="<?php echo $data->EMAIL;?>" style="width:515px;"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td align="right">留言內容&nbsp;</td>
+			<td><textarea rows="10" cols="60" name="memoirs" id="memoirs" style="width:515px;"><?php echo $data->MEMOIRS;?></textarea></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td colspan="4" align="center"><input type="submit" value="儲存">&nbsp;&nbsp;<input type="reset" value="重填"></td>
+		</tr>
+	</table>
+	</form>
+</div>

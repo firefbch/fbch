@@ -1,0 +1,11 @@
+<?php $data = $view->getData();?>
+<div id="detail_news">
+	<div id="detail_news_title"><?php echo $data->TITLE;?></div>
+	<div id="detail_news_title" style="font-size:15px;color:737373;">日期:<?php echo $data->WDATE;?></div>
+	<?php if (strcmp($data->FILE1, "")):$imgAry = getimagesize("./public/news/" . $data->FILE1);?><div id="detail_news_img">
+	<img src="/public/news/<?php echo $data->FILE1;?>"<?php echo (($imgAry[0] > 600) ? " width=\"600\"" : "");?> alt="<?php echo $data->FILE1_PS;?>" title="<?php echo $data->FILE1_PS;?>">
+	</div><?php endif;?>
+	<div id="detail_news_memoirs"><?php echo nl2br($data->MEMOIRS);?></div>
+	<div class="clear_div"></div>
+	<div><input type="button" value="回清單" onclick="window.location.href='<?php echo $data->BACKURL;?>';"></div>
+</div>

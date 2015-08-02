@@ -1,0 +1,6 @@
+<div id="main_link">網站連結</div>
+<ul>
+<?php foreach ($linkData as $link):?>
+	<li class="tolink whcolor div_maru"><a href="<?php echo $link["LINK"];?>" target="_block" alt="連結:<?php echo $link["TITLE"];?>(另開新視窗)" title="連結:<?php echo $link["TITLE"];?>(另開新視窗)"><?php echo $link["TITLE"];?></a></li>
+<?php endforeach;?>
+</ul>

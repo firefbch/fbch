@@ -1,0 +1,9 @@
+<ul class="news_list">
+<?php 
+$data = $view->getData();
+foreach ($data[0] as $val):?>
+	<li><font size="2">[<?php echo $val["WDATE"];?>]</font> <a href="/news/detail/pageNo/<?php echo $data["PAGENO"]?>/id/<?php echo $val["ID"];?>/"><?php echo $val["TITLE"];?></a></li>
+<?php endforeach;?>
+</ul>
+<div style="clear:both;height:50px;"></div>
+<div class="pageList"><?php echo $data[1];?></div>

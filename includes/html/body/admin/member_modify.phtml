@@ -1,0 +1,67 @@
+<?php $data = $view->getData();?>
+<script type="text/javascript">
+	$(function(){
+		setNewDateSelect("#birthday");
+	});
+</script>
+<link rel="StyleSheet" href="/styles/base/jquery.ui.datepicker.css" type="text/css">
+<link rel="StyleSheet" href="/styles/base/jquery.ui.theme.css" type="text/css">
+<div id="SITE_TITLE"><?php echo $this->_chkf->getFuName($this->_url_pathAry[2]);?></div>
+<div class="new_modify"><a href="<?php echo $data -> BACKURL;?>">回清單</a></div>
+<div id="modify_detail">
+	<form action="<?php echo preg_replace("/member_modify/", "update", $_SERVER["REQUEST_URI"]);?>" method="post" name="modify_form" id="modify_form" enctype="multipart/form-data">
+	<table width="98%">
+		<tr>
+			<td></td>
+			<td align="right">會員帳號&nbsp;</td>
+			<td><?php if (strcmp($data->USER_ID, "")): echo $data->USER_ID;else:?><input type="text" name="user_id" id="user_id" value="<?php echo $data->USER_ID;?>"><?php endif;?></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td align="right">密碼&nbsp;</td>
+			<td><input type="text" name="passwd" id="passwd" value="<?php echo $data->PASSWD;?>"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td align="right">姓名&nbsp;</td>
+			<td><input type="text" name="user_name" id="user_name" value="<?php echo $data->USER_NAME;?>"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td align="right">生日&nbsp;</td>
+			<td><input type="text" name="birthday" id="birthday" value="<?php echo $data->BIRTHDAY;?>"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td align="right">性別&nbsp;</td>
+			<td><input type="radio" name="user_sex" id="user_sex" value="M"<?php if ($data->USER_SEX == "M") echo " checked";?>> 男&nbsp;&nbsp;<input type="radio" name="user_sex" id="user_sex" value="F"<?php if ($data->USER_SEX == "F") echo " checked";?>> 女</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td align="right">電話&nbsp;</td>
+			<td><input type="text" name="user_tel" id="user_tel" value="<?php echo $data->USER_TEL;?>"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td align="right">登入次數&nbsp;</td>
+			<td><input type="text" name="counts" id="counts" value="<?php echo $data->COUNTS;?>"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td align="right">帳號開啟&nbsp;</td>
+			<td><input type="radio" name="active" id="active" value="Y"<?php if ($data->ACTIVE == "Y"):?> checked<?php endif;?>> 啟用 <input type="radio" name="active" id="active" value="N"<?php if ($data->ACTIVE == "N"):?> checked<?php endif;?>> 開閉</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td colspan="4" align="center"><input type="submit" value="儲存">&nbsp;&nbsp;<input type="reset" value="重填"></td>
+		</tr>
+	</table>
+	</form>
+</div>

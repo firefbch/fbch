@@ -1,0 +1,47 @@
+<html>
+	<head>
+		<title><?php echo $this->siteDatas -> SITE_CONFIG -> TITLE;?></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<?php foreach ($this -> _controllCss as $cssFile):?><link rel="StyleSheet" href="/styles/<?php echo $cssFile;?>.css" type="text/css"><?php endforeach;?>
+		<?php foreach ($this -> _controllJs as $jsFile):?><script type="text/javascript" src="<?php echo ((strtolower(substr($jsFile, 0, 4)) == "http") ? $jsFile : "/scripts/" . $jsFile);?>.js"></script><?php endforeach;?>
+		<script type="text/javascript">
+		$(function(){
+			var weeksAry = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六");
+			var chineseDate = "<?php echo date("Y年m月d日");?>(" + weeksAry[<?php echo date(w);?>] + ") " + LunarDate.GetLunarDay(<?php echo date("Y, m, d");?>);
+			$("#cdate").html(chineseDate);
+		});
+		</script>
+		<style type="text/css">
+		#main_right{
+			padding: 10px;
+			width: 730px;
+		}
+		</style>
+	</head>
+	<body>
+		<div id="web_main">
+			<div id="main_top">
+				<ul class="admin_smenu">
+					<li>網站基本資料</li>
+					<li>系統設定</li>
+					<li><a href="/admin/logout/">登出</a></li>
+				</ul>
+			</div>
+			<div id="main_center">
+				<div id="main_left">
+					<div id="admin_menu">
+						<ul>
+							<?php 
+							$lmuAry = $this->_chkf->getAry();
+							foreach ($lmuAry as $key => $valAry):if ($key != "home"):?>
+							<li class="whcolor"><a href="/admin/<?php echo $key;?>/page_name/<?php echo $key;?>_list/"><?php echo $valAry["title"];?></a></li>
+							<?php endif;endforeach;?>
+							<li class="whcolor"><a href="/admin/sys_conf/">基本資料設定</a></li>
+						</ul>
+					</div>
+				</div>
+				<div id="main_right"><?php require_once TEMPLATE_PATH . DS . $this->assignTemplate . DS . $view->_myPage . ".phtml";?></div>
+			</div>
+		</div>
+	</body>
+</html>

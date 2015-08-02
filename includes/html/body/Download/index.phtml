@@ -1,0 +1,9 @@
+<ul class="news_list" style="padding-left:5px;">
+<?php 
+$data = $view->getData();
+foreach ($data[0] as $val):?>
+	<li><div style="width:550px;float:left;"><?php echo $val["TITLE"];?></div><div style="width:100px;float:left;"><?php if (strcmp($val["FILE1"], "")):?><a href="/public/download/<?php echo $val["FILE1"];?>">下載一</a><?php endif;?></div><div style="width:100px;float:left;"><?php if (strcmp($val["FILE2"], "")):?><a href="/public/download/<?php echo $val["FILE2"];?>">下載二</a><?php endif;?></div></li>
+<?php endforeach;?>
+</ul>
+<div style="clear:both;height:50px;"></div>
+<div class="pageList"><?php echo $data[1];?></div>
