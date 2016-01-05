@@ -1,10 +1,9 @@
 <div style="text-align:left;margin:10px;">
-	<?php if (strcmp($data["IMAGE1"], "")):$imgAry=getimagesize("./public/business/" . $data["IMAGE1"]);?><div style="float:left;margin:10px;"><img src="/public/business/<?php echo $data["IMAGE1"];?>" width="<?php echo (($imgAry[0] > 680) ? 680 : $imgAry[0]);?>"></div><?php endif;?>
-	<?php if (strcmp($data["IMAGE2"], "")):$imgAry=getimagesize("./public/business/" . $data["IMAGE2"]);?><div style="float:right;margin:10px;"><img src="/public/business/<?php echo $data["IMAGE2"];?>" width="<?php echo (($imgAry[0] > 680) ? 680 : $imgAry[0]);?>"></div><?php endif;?>
 	<?php echo nl2br(stripcslashes($data["MEMOIRS"]));?>
-	
-	<?php if (strcmp($data["IMAGE3"], "")):$imgAry=getimagesize("./public/business/" . $data["IMAGE3"]);?><div style="float:right;margin:10px;"><img src="/public/business/<?php echo $data["IMAGE3"];?>" width="<?php echo (($imgAry[0] > 680) ? 680 : $imgAry[0]);?>"></div><?php endif;?>
-	<?php if (strcmp($data["IMAGE4"], "")):$imgAry=getimagesize("./public/business/" . $data["IMAGE4"]);?><div style="float:right;margin:10px;"><img src="/public/business/<?php echo $data["IMAGE4"];?>" width="<?php echo (($imgAry[0] > 680) ? 680 : $imgAry[0]);?>"></div><?php endif;?>
-	<?php if (strcmp($data["IMAGE5"], "")):$imgAry=getimagesize("./public/business/" . $data["IMAGE5"]);?><div style="float:right;margin:10px;"><img src="/public/business/<?php echo $data["IMAGE5"];?>" width="<?php echo (($imgAry[0] > 680) ? 680 : $imgAry[0]);?>"></div><?php endif;?>
-	<?php if (strcmp($data["IMAGE6"], "")):$imgAry=getimagesize("./public/business/" . $data["IMAGE6"]);?><div style="float:right;margin:10px;"><img src="/public/business/<?php echo $data["IMAGE6"];?>" width="<?php echo (($imgAry[0] > 680) ? 680 : $imgAry[0]);?>"></div><?php endif;?>
+	<?php if (strcmp($data["IMAGE1"], "")):$imgAry=getimagesize("./public/business/" . $data["IMAGE1"]);?><div style="clear:both;margin:10px;"><a href="/public/business/<?php echo $data["IMAGE1"];?>">附件一下載</a></div><?php endif;?>
+	<?php if (strcmp($data["IMAGE2"], "")):$imgAry=getimagesize("./public/business/" . $data["IMAGE2"]);?><div style="clear:both;margin:10px;"><a href="/public/business/<?php echo $data["IMAGE2"];?>">附件二下載</a></div><?php endif;?>
+	<?php if (strcmp($data["IMAGE3"], "")):$imgAry=getimagesize("./public/business/" . $data["IMAGE3"]);?><div style="clear:both;margin:10px;"><a href="/public/business/<?php echo $data["IMAGE3"];?>">附件三下載</a></div><?php endif;?>
+	<?php if (strcmp($data["IMAGE4"], "")):$imgAry=getimagesize("./public/business/" . $data["IMAGE4"]);?><div style="clear:both;margin:10px;"><a href="/public/business/<?php echo $data["IMAGE4"];?>">附件四下載</a></div><?php endif;?>
+	<?php if (strcmp($data["IMAGE5"], "")):$imgAry=getimagesize("./public/business/" . $data["IMAGE5"]);?><div style="clear:both;margin:10px;"><a href="/public/business/<?php echo $data["IMAGE5"];?>">附件五下載</a></div><?php endif;?>
+	<?php if (strcmp($data["IMAGE6"], "")):$imgAry=getimagesize("./public/business/" . $data["IMAGE6"]);?><div style="clear:both;margin:10px;"><a href="/public/business/<?php echo $data["IMAGE6"];?>">附件六下載</a></div><?php endif;?>
 </div>
