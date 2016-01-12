@@ -855,7 +855,7 @@ class Module_Admin extends Module_ObjectDb{
 			$img_path = $upload_dir . "/" . $data[0][strtoupper($field_name)];
 			if (file_exists("." . $img_path)) {
 				@unlink("." . $img_path);
-				$this->updateDb("news", array("FILE1" => ""), array("ID = '" . $id . "'"));
+				$this->updateDb("download", array(strtoupper($field_name) => ""), array("ID = '" . $id . "'"));
 				$mesg = "檔案已成功刪除";
 			}else{
 				$mesg = "檔案不存在" . $img_path;

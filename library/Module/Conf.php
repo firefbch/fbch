@@ -16,7 +16,7 @@ class Module_Conf{
 		$this -> _conf = array(
 				'host' 			=> "localhost",
 				'username'		=> "root",
-				'password'		=> "123456",
+				'password'		=> "q1a2z3wsx",
 				'dbname'		=> $tbName,
 				'charset'		=> 'utf8',
 				'options'		=> $this -> _options

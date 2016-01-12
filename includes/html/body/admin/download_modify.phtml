@@ -21,8 +21,7 @@
 				$fileAry = explode(".", $data->$fieldName);
 				if (in_array($fileAry[1], array("jpg","png","gif","bmp", "jpeg"))):?>
 				<img src="/public/download/<?php echo $data->$fieldName;?>" width="100">
-				<a href="/admin/download/page_name/delimg/field_name/<?php echo $fieldName;?>/id/<?php echo $data->ID;?>/">刪除檔案</a>
-				<?php endif;?>
+				<?php endif;?><a href="/admin/download/page_name/delimg/field_name/<?php echo $fieldName;?>/id/<?php echo $data->ID;?>/">刪除檔案</a>
 				</div><?php endif;?>
 			</td>
 			<td></td>
