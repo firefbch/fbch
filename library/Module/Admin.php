@@ -550,6 +550,7 @@ class Module_Admin extends Module_ObjectDb{
 				$cond["ADDRESS"] = addslashes($_POST["address"]);
 				$cond["CALENDAR"] = $_POST['calendar'];
 				$cond["EMAIL"] = addslashes($_POST["email"]);
+				$cond["MEMOIRS"] = addslashes($_POST["memoirs"]);
 				$cond["UDATE"] = date("YmdHis");
 					
 				$this->updateDb("site_config", $cond, array("ID = '" . $id . "'"));
@@ -562,6 +563,7 @@ class Module_Admin extends Module_ObjectDb{
 				$cond["ADDRESS"] = addslashes($_POST["address"]);
 				$cond["CALENDAR"] = $_POST['calendar'];
 				$cond["EMAIL"] = addslashes($_POST["email"]);
+				$cond["MEMOIRS"] = addslashes($_POST["memoirs"]);
 				$cond["FDATE"] = date("YmdHis");
 				$cond["UDATE"] = date("YmdHis");
 					
