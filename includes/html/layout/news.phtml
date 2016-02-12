@@ -32,6 +32,9 @@
 			background: linear-gradient(to bottom,  #fcecfc 0%,#fba6e1 50%,#fd89d7 51%,#ff7cd8 100%); /* W3C */
 			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcecfc', endColorstr='#ff7cd8',GradientType=0 ); /* IE6-8 */
 		}
+		<?php if (strcmp($this->siteDatas->SITE_CONFIG->IMAGE1, "")):?>#main_top{
+			background-image:url(/public/sys_conf/<?php echo $this->siteDatas->SITE_CONFIG->IMAGE1;?>);
+		}<?php endif;?>
 		</style>
 		<!--[if gte IE 9]>
 		<style type="text/css">

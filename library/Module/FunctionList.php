@@ -8,7 +8,7 @@ class Module_FunctionList extends Module_ObjectDb{
 	}
 	
 	private function fdata(){
-		$this->_array = array("home", "news","about","download","business","member", "album", "exp","contact");
+		$this->_array = array("home", "news","about","download","business","member", "album", "exp","contact", "calendar");
 		$this->_titleAry = array(
 							"home"		=> array("title" => "首頁", "active" => "Y"),
 							"about"		=> array("title" => "協會簡介", "active" => "Y"),
@@ -30,7 +30,7 @@ class Module_FunctionList extends Module_ObjectDb{
 	
 	//取出網站資訊
 	public function getMyWebSite(){
-		return $this->getRowData("site_config", array("strWhe" => array("ID = '1'")), array("TITLE", "TEL", "FAX", "EMAIL", "ADDRESS", "MEMOIRS"));
+		return $this->getRowData("site_config", array("strWhe" => array("ID = '1'")), array("TITLE", "TEL", "FAX", "EMAIL", "ADDRESS", "CALENDAR", "IMAGE1", "MEMOIRS"));
 	}
 	
 	public function getAry(){

@@ -525,12 +525,12 @@ class Module_Admin extends Module_ObjectDb{
 			}
 			$errmsg = "";
 			$cond = array();
-			//$file_fileds = array("IMAGE1", "IMAGE2", "IMAGE3", "IMAGE4", "IMAGE5", "IMAGE6");
+			$file_fileds = array("IMAGE1");
 			$id = 1;
 			//$com_id = $this->getVariables("com_id");
 	
-			//$data = $this->selectDb("conf", array("strWhe" => array("ID = '" . $id . "'")));
-			/*while (list($key, $val) = each($file_fileds)) {
+			$data = $this->selectDb("site_config", array("strWhe" => array("ID = '1'")));
+			while (list($key, $val) = each($file_fileds)) {
 				$field_name = $_FILES[strtolower($val)];
 				if (strcmp($field_name["name"], "")) {
 					$old_file_path = $upload_dir . "/" . $data[0][strtoupper($val)];
@@ -541,13 +541,14 @@ class Module_Admin extends Module_ObjectDb{
 						$cond[strtoupper($val)] = $new_file_name;
 					}
 				}
-			}*/
+			}
 	
 			if ($this->getRows("site_config", array("strWhe" => array("ID = '" . $id . "'")))){
 				$cond["TITLE"] = addslashes($_POST["title"]);
 				$cond["TEL"] = addslashes($_POST["tel"]);
 				$cond["FAX"] = addslashes($_POST["fax"]);
 				$cond["ADDRESS"] = addslashes($_POST["address"]);
+				$cond["CALENDAR"] = $_POST['calendar'];
 				$cond["EMAIL"] = addslashes($_POST["email"]);
 				$cond["UDATE"] = date("YmdHis");
 					
@@ -559,6 +560,7 @@ class Module_Admin extends Module_ObjectDb{
 				$cond["TEL"] = addslashes($_POST["tel"]);
 				$cond["FAX"] = addslashes($_POST["fax"]);
 				$cond["ADDRESS"] = addslashes($_POST["address"]);
+				$cond["CALENDAR"] = $_POST['calendar'];
 				$cond["EMAIL"] = addslashes($_POST["email"]);
 				$cond["FDATE"] = date("YmdHis");
 				$cond["UDATE"] = date("YmdHis");
@@ -568,27 +570,27 @@ class Module_Admin extends Module_ObjectDb{
 				$this->reDirect($mesg, "/admin/sys_conf/");
 			}
 		}
-		/*else if ($page_name == "delimg"){
-			$id = $this->getVariables("id");
+		else if ($page_name == "delimg"){
+			//$id = $this->getVariables("id");
 			$field_name = $this->getVariables("field_name");
-			$upload_dir = $this->_upLoadDir . "/about";
-			$data = $this->selectDb("aboutus", array("strWhe" => array("ID = '" . $id . "'")));
+			$upload_dir = $this->_upLoadDir . "/sys_conf";
+			$data = $this->selectDb("site_config", array("strWhe" => array("ID = '1'")));
 			$mesg = "刪除失敗";
 	
 			$img_path = $upload_dir . "/" . $data[0][strtoupper($field_name)];
 			if (file_exists("." . $img_path)) {
 				@unlink("." . $img_path);
-				$this->updateDb("aboutus", array(strtoupper($field_name) => ""), array("ID = '" . $id . "'"));
+				$this->updateDb("site_config", array(strtoupper($field_name) => ""), array("ID = '1'"));
 				$mesg = "檔案已成功刪除";
 			}else{
-				$this->updateDb("aboutus", array(strtoupper($field_name) => ""), array("ID = '" . $id . "'"));
+				$this->updateDb("site_config", array(strtoupper($field_name) => ""), array("ID = '1'"));
 				$mesg = "檔案不存在" . $img_path;
 			}
-			$this->reDirect($mesg, "/admin/about/page_name/news_list/");
-		}*/
+			$this->reDirect($mesg, "/admin/sys_conf/");
+		}
 	
 		$this->_myPage = "sys_conf";
-		$this->_fieldAry = $this->_fieldAry + array("","","","","","TEL","FAX","ADDRESS","EMAIL");
+		$this->_fieldAry = $this->_fieldAry + array("","","","","","TEL","FAX","ADDRESS","EMAIL", "CALENDAR", "IMAGE1");
 		$this->_data = $this->getRowData("site_config", array("strWhe" => array("ID = '1'")), $this->_fieldAry);
 	}
 	

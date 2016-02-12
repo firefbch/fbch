@@ -35,6 +35,29 @@
 		</tr>
 		<tr>
 			<td></td>
+			<td align="right">行事曆嵌入碼&nbsp;</td>
+			<td><textarea rows="6" cols="60" name="calendar" id="calendar"><?php echo stripslashes($data->CALENDAR);?></textarea></td>
+			<td></td>
+		</tr>
+		<?php for ($x = 1;$x < 2;$x++):$fieldName = "IMAGE" . $x;?>
+		<tr>
+			<td></td>
+			<td align="right">網站上方圖片<br>(1005px X 120px)&nbsp;</td>
+			<td>
+				<input type="file" name="<?php echo strtolower($fieldName);?>" id="<?php echo strtolower($fieldName);?>" value=""><br>
+				<?php if (strcmp($data->$fieldName, "")):?><div>目前的檔案:<?php echo $data->$fieldName;?><br>
+				<?php 
+				$fileAry = explode(".", $data->$fieldName);
+				if (in_array(strtolower($fileAry[1]), array("jpg","png","gif","bmp", "jpeg"))):?>
+				<img src="/public/sys_conf/<?php echo $data->$fieldName;?>" width="100">
+				<?php endif;?><a href="/admin/sys_conf/page_name/delimg/field_name/<?php echo $fieldName;?>/">刪除檔案</a>
+				</div><?php endif;?>
+			</td>
+			<td></td>
+		</tr>
+		<?php endfor;?>
+		<tr>
+			<td></td>
 			<td align="right">備註&nbsp;</td>
 			<td><textarea rows="6" cols="60" name="memoirs" id="memoirs"><?php echo stripslashes($data->MEMOIRS);?></textarea></td>
 			<td></td>
