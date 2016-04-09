@@ -18,7 +18,7 @@ class Module_FunctionList extends Module_ObjectDb{
 							"contact"	=> array("title" => "聯絡我們", "active" => "Y"),
 							"album"		=> array("title" => "打火弟兄園地", "active" => "Y"),
 							"exp"		=> array("title" => "打火弟兄園地 - 經驗分享", "active" => "N"),
-							"member"	=> array("title" => "會員專區", "active" => "Y"),
+							//"member"	=> array("title" => "會員專區", "active" => "Y"),
 							"calendar"	=> array("title" => "協會行事曆", "active" => "Y"),
 							"link"		=> array("title" => "全國警義消單位網站連結", "active" => "N")
 		);

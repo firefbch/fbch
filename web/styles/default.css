@@ -754,3 +754,11 @@ th{
   left: -9000px;
   top: -9000px;
 }
+
+.data_area{
+	background-color: rgba( 255, 255, 255, 0.55 );
+	position: absolute;
+	margin-top: 88px;
+	padding: 5px;
+	margin-left: 664px;
+}
