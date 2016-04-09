@@ -1,0 +1,43 @@
+<?php $data = $view->getData();?>
+<script type="text/javascript">
+	$(function(){
+		setNewDateSelect("#wdate");
+	});
+</script>
+<link rel="StyleSheet" href="/styles/base/jquery.ui.datepicker.css" type="text/css">
+<link rel="StyleSheet" href="/styles/base/jquery.ui.theme.css" type="text/css">
+<div id="SITE_TITLE"><?php echo $this->_chkf->getFuName($this->_url_pathAry[2]);?></div>
+<div class="new_modify"><a href="<?php echo $data -> BACKURL;?>">回清單</a></div>
+<div id="modify_detail">
+	<form action="<?php echo preg_replace("/admin_modify/", "update", $_SERVER["REQUEST_URI"]);?>" method="post" name="modify_form" id="modify_form" enctype="multipart/form-data">
+	<table width="98%">
+		<tr>
+			<td></td>
+			<td align="right">帳號&nbsp;</td>
+			<td><input type="text" name="account" id="account" value="<?php echo $data->ACCOUNT;?>"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td align="right">密碼&nbsp;</td>
+			<td><input type="password" name="passwd" id="passwd" value="<?php echo $data->PASSWD;?>"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td align="right">姓名&nbsp;</td>
+			<td><input type="text" name="title" id="title" value="<?php echo $data->TITLE;?>"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td align="right">啟用&nbsp;</td>
+			<td><input type="radio" name="active" id="active" value="Y"<?php if ($data->ACTIVE == "Y" || $data->ACTIVE == ""):?> checked<?php endif;?>> 啟用 <input type="radio" name="active" id="active" value="N"<?php if ($data->ACTIVE == "N"):?> checked<?php endif;?>> 開閉</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td colspan="4" align="center"><input type="submit" value="儲存">&nbsp;&nbsp;<input type="reset" value="重填"></td>
+		</tr>
+	</table>
+	</form>
+</div>

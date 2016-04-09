@@ -77,6 +77,66 @@ class Module_Admin extends Module_ObjectDb{
 		}
 	}
 	
+	public function admin_data(){
+		$page_name = $this->getVariables("page_name");
+		$page_name = (strcmp($page_name, "")) ? $page_name : "admin_list";
+		$this->_myPage = $page_name;
+	
+		if ($page_name == "admin_list"){
+			$pageNo = $this->getVariables("pageNo");
+			$pageNo = (strcmp($pageNo, "")) ? $pageNo : 1;
+			$data = $this->selectDb("admin", array("strOrd" => array("FDATE DESC")));
+	
+			$this->_data = $this->getPageList($data, "/admin/admin_data/page_name/admin_list/", $pageNo);
+			$this->_data["PAGENO"] = $pageNo;
+		}
+		else if ($page_name == "admin_modify"){
+			$id = $this->getVariables("id");
+			$pageNo = $this->getVariables("pageNo");
+			$this->_fieldAry[] = "ACCOUNT";
+			$this->_fieldAry[] = "ACTIVE";
+			$this->_fieldAry[] = "PASSWD";
+			$this->_data = $this->getRowData("admin", array("strWhe" => array("ID = '" . $id . "'")), $this->_fieldAry);
+			$this->_data -> BACKURL = "/admin/admin_data/page_name/admin_list/pageNo/" . $pageNo . "/";
+		}
+		else if ($page_name == "update"){
+			
+			$id = $this->getVariables("id");
+			$pageNo = $this->getVariables("pageNo");
+			$cond = array();;
+	
+			if ($this->getRows("admin", array("strWhe" => array("ID = '" . $id . "'")))){
+				$cond["TITLE"] = addslashes($_POST["title"]);
+				$cond["ACCOUNT"] = addslashes($_POST["account"]);
+				$cond["PASSWD"] = addslashes($_POST["passwd"]);
+				$cond["ACTIVE"] = $_POST["active"];
+				$cond["UDATE"] = date("YmdHis");
+	
+				$this->updateDb("admin", $cond, array("ID = '" . $id . "'"));
+				$mesg = "完成更新";
+				$this->reDirect($mesg, "/admin/admin_data/page_name/admin_modify/pageNo/" . $pageNo . "/id/" . $id . "/");
+			}else{
+				$cond["TITLE"] = addslashes($_POST["title"]);
+				$cond["ACCOUNT"] = addslashes($_POST["account"]);
+				$cond["PASSWD"] = addslashes($_POST["passwd"]);
+				$cond["ACTIVE"] = $_POST["active"];
+				$cond["FDATE"] = date("YmdHis");
+				$cond["UDATE"] = date("YmdHis");
+	
+				$this->insertDb("admin", $cond);
+				$mesg = "完成新增";
+				$this->reDirect($mesg, "/admin/admin_data/page_name/admin_list/");
+			}
+		}
+		else if ($page_name == "delete"){
+			$id = $this->getVariables("id");
+	
+			$this->deleteDb("admin", array("strWhe" => array("ID = '" . $id . "'")));
+			$this->reDirect("已成功刪除資料", "/admin/admin_data/page_name/admin_list/");
+		}
+		
+	}
+	
 	public function news(){
 		$page_name = $this->getVariables("page_name");
 		$page_name = (strcmp($page_name, "")) ? $page_name : "news_list";
