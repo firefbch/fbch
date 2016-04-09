@@ -275,35 +275,30 @@ class Module_Admin extends Module_ObjectDb{
 			$cond = array();
 			//$file_fileds = array("FILE1", "FILE2");
 	
-			$data = $this->selectDb("exp", array("strWhe" => array("ID = '" . $id . "'")));
-			/*while (list($key, $val) = each($file_fileds)) {
-				$field_name = $_FILES[strtolower($val)];
-				if (strcmp($field_name["name"], "")) {
-					$old_file_path = $upload_dir . "/" . $data[0][strtoupper($val)];
-					$new_file_name = md5($field_name["name"] . "-" . microtime()) . strrchr($field_name["name"], ".");
-					$upload_file_path = $new_file_name;
-					$errmsg = $this->uploadFile($field_name, $field_name["name"], $field_name["size"], $upload_dir, $upload_file_path, $old_file_path, "\.+[jpg|jpeg|gif|png]+$");
-					if (!strcmp($errmsg, "")) {
-						$cond[strtoupper($val)] = $new_file_name;
-					}
-				}
-			}*/
 	
 			if ($this->getRows("exp", array("strWhe" => array("ID = '" . $id . "'")))){
-				$cond["TITLE"] = addslashes($_POST["title"]);
-				$cond["NAME"] = addslashes($_POST["name"]);
-				$cond["MEMOIRS"] = addslashes($_POST["memoirs"]);
-				$cond["ACTIVE"] = $_POST["active"];
+				$cond["PARENT_ID"] = 1;
+				$cond["TITLE"] = $_POST["title"];
+				$cond["NAME"] = $_POST["name"];
+				$cond["DATE"] = date("YmdHis");
+				$cond["MEMOIRS"] = $_POST["memoirs"];
+				$cond["LASTRTIME"] = date("YmdHis");
+				$cond["LASTRNAME"] = $_POST["name"];
+				$cond['ACTIVE'] = $_POST['active'];
 				$cond["UDATE"] = date("YmdHis");
 	
 				$this->updateDb("exp", $cond, array("ID = '" . $id . "'"));
-				$mesg = "完成更新" . ((strcmp($errmsg, "")) ? ",但" . $errmsg : ".");
+				$mesg = "完成更新";
 				$this->reDirect($mesg, "/admin/exp/page_name/exp_modify/pageNo/" . $pageNo . "/id/" . $id . "/");
 			}else{
-				$cond["TITLE"] = addslashes($_POST["title"]);
-				$cond["NAME"] = addslashes($_POST["name"]);
-				$cond["MEMOIRS"] = addslashes($_POST["memoirs"]);
-				$cond["ACTIVE"] = $_POST["active"];
+				$cond["PARENT_ID"] = 1;
+				$cond["TITLE"] = $_POST["title"];
+				$cond["NAME"] = $_POST["name"];
+				$cond["DATE"] = date("YmdHis");
+				$cond["MEMOIRS"] = $_POST["memoirs"];
+				$cond["LASTRTIME"] = date("YmdHis");
+				$cond["LASTRNAME"] = $_POST["name"];
+				$cond['ACTIVE'] = $_POST['active'];
 				$cond["FDATE"] = date("YmdHis");
 				$cond["UDATE"] = date("YmdHis");
 	

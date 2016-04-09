@@ -1,7 +1,7 @@
 <?php $data = $view->getData();
 $actAry = array("Y" => "已啟用", "N" => "未啟用")?>
 <div id="SITE_TITLE" class="ftitle_bg"><?php echo $this->_chkf->getFuName($this->_url_pathAry[2]);?></div>
-
+<div class="new_modify"><a href="/admin/exp/page_name/exp_modify/pageNo/<?php echo $data["PAGENO"];?>/id/-/">新增一筆</a></div>
 <ul class="news_list">
 <?php 
 foreach ($data[0] as $val):?>
