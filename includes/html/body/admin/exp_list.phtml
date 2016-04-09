@@ -5,7 +5,7 @@ $actAry = array("Y" => "已啟用", "N" => "未啟用")?>
 <ul class="news_list">
 <?php 
 foreach ($data[0] as $val):?>
-	<li>[<?php echo $actAry[$val["ACTIVE"]];?>][<?php echo $val["DATE"];?>] <a href="/admin/exp/page_name/exp_modify/pageNo/<?php echo $data["PAGENO"];?>/id/<?php echo $val["ID"];?>/"><?php echo $val["TITLE"];?></a></li>
+	<li>[ <a href="/admin/exp/page_name/delete/id/<?php echo $val["ID"];?>/">刪除</a> ] [<?php echo $actAry[$val["ACTIVE"]];?>][<?php echo $val["DATE"];?>] <a href="/admin/exp/page_name/exp_modify/pageNo/<?php echo $data["PAGENO"];?>/id/<?php echo $val["ID"];?>/"><?php echo $val["TITLE"];?></a></li>
 <?php endforeach;?>
 </ul>
 <div class="clear_div"></div>

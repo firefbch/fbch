@@ -4,7 +4,7 @@
 <ul class="news_list">
 <?php 
 foreach ($data[0] as $val):?>
-	<li>[<?php echo $val["WDATE"];?>] <a href="/admin/news/page_name/news_modify/pageNo/<?php echo $data["PAGENO"];?>/id/<?php echo $val["ID"];?>/"><?php echo $val["TITLE"];?></a></li>
+	<li>[ <a href="/admin/news/page_name/delete/id/<?php echo $val["ID"];?>/">刪除</a> ] [<?php echo $val["WDATE"];?>] <a href="/admin/news/page_name/news_modify/pageNo/<?php echo $data["PAGENO"];?>/id/<?php echo $val["ID"];?>/"><?php echo $val["TITLE"];?></a></li>
 <?php endforeach;?>
 </ul>
 <div class="clear_div"></div>

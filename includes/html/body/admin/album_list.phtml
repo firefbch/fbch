@@ -4,7 +4,7 @@
 <ul class="news_list">
 <?php 
 foreach ($data[0] as $val):?>
-	<li><?php if ($data["PARENT_ID"] > 0):?><a href="/admin/album/page_name/album_modify/pageNo/<?php echo $data["PAGENO"];?>/parent_id/<?php echo $val["PARENT_ID"];?>/id/<?php echo $val["ID"];?>/"><?php else:?>[ <a href="/admin/album/page_name/albumt_modify/pageNo/<?php echo $data["PAGENO"];?>/id/<?php echo $val["ID"];?>/">編輯</a> ] <a href="/admin/album/page_name/album_list/pageNo/<?php echo $data["PAGENO"];?>/parent_id/<?php echo $val["ID"];?>/"><?php endif;?><?php echo $val["TITLE"];?></a></li>
+	<li>[ <a href="/admin/album/page_name/delete/id/<?php echo $val["ID"];?>/">刪除</a> ] <?php if ($data["PARENT_ID"] > 0):?><a href="/admin/album/page_name/album_modify/pageNo/<?php echo $data["PAGENO"];?>/parent_id/<?php echo $val["PARENT_ID"];?>/id/<?php echo $val["ID"];?>/"><?php else:?>[ <a href="/admin/album/page_name/albumt_modify/pageNo/<?php echo $data["PAGENO"];?>/id/<?php echo $val["ID"];?>/">編輯</a> ] <a href="/admin/album/page_name/album_list/pageNo/<?php echo $data["PAGENO"];?>/parent_id/<?php echo $val["ID"];?>/"><?php endif;?><?php echo $val["TITLE"];?></a></li>
 <?php endforeach;?>
 </ul>
 <div class="clear_div"></div>

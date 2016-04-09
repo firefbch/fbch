@@ -150,6 +150,20 @@ class Module_Admin extends Module_ObjectDb{
 				$this->reDirect($mesg, "/admin/news/page_name/news_list/");
 			}
 		}
+		else if ($page_name == "delete"){
+			$id = $this->getVariables("id");
+			$upload_dir = $this->_upLoadDir . "/news";
+			$data = $this->selectDb("news", array("strWhe" => array("ID = '" . $id . "'")));
+			for ($x = 1;$x < 3;$x++){
+				$img_path = $upload_dir . "/" . $data[0]["FILE" . $x];
+				if (file_exists("." . $img_path)) {
+					@unlink("." . $img_path);
+				}
+			}
+				
+			$this->deleteDb("news", array("strWhe" => array("ID = '" . $id . "'")));
+			$this->reDirect("已成功刪除資料", "/admin/news/page_name/news_list/");
+		}
 		else if ($page_name == "delimg"){
 			$id = $this->getVariables("id");
 			$field_name = $this->getVariables("field_name");
@@ -237,6 +251,12 @@ class Module_Admin extends Module_ObjectDb{
 				$mesg = "完成新增";
 				$this->reDirect($mesg, "/admin/exp/page_name/exp_list/");
 			}
+		}
+		else if ($page_name == "delete"){
+			$id = $this->getVariables("id");
+		
+			$this->deleteDb("exp", array("strWhe" => array("ID = '" . $id . "'")));
+			$this->reDirect("已成功刪除資料", "/admin/exp/page_name/exp_list/");
 		}
 		/*else if ($page_name == "delimg"){
 			$id = $this->getVariables("id");
@@ -359,6 +379,20 @@ class Module_Admin extends Module_ObjectDb{
 				$this->reDirect($mesg, "/admin/album/page_name/album_list/");
 			}
 		}
+		else if ($page_name == "delete"){
+			$id = $this->getVariables("id");
+			$upload_dir = $this->_upLoadDir . "/album";
+			$data = $this->selectDb("album", array("strWhe" => array("ID = '" . $id . "'")));
+			for ($x = 1;$x < 11;$x++){
+				$img_path = $upload_dir . "/" . $data[0]["FILE" . $x];
+				if (file_exists("." . $img_path)) {
+					@unlink("." . $img_path);
+				}
+			}
+		
+			$this->deleteDb("album", array("strWhe" => array("ID = '" . $id . "'")));
+			$this->reDirect("已成功刪除資料", "/admin/album/page_name/album_list/");
+		}
 		else if ($page_name == "delimg"){
 			$id = $this->getVariables("id");
 			$field_name = $this->getVariables("field_name");
@@ -374,7 +408,7 @@ class Module_Admin extends Module_ObjectDb{
 			}else{
 				$mesg = "檔案不存在" . $img_path;
 			}
-			$this->reDirect($mesg, "/admin/album/page_name/news_list/");
+			$this->reDirect($mesg, "/admin/album/page_name/album_list/");
 		}
 	}
 	
@@ -431,6 +465,12 @@ class Module_Admin extends Module_ObjectDb{
 				$mesg = "完成新增";
 				$this->reDirect($mesg, "/admin/link/page_name/link_list/");
 			}
+		}
+		else if ($page_name == "delete"){
+			$id = $this->getVariables("id");
+		
+			$this->deleteDb("link", array("strWhe" => array("ID = '" . $id . "'")));
+			$this->reDirect("已成功刪除資料", "/admin/link/page_name/link_list/");
 		}
 	}
 	
@@ -848,6 +888,20 @@ class Module_Admin extends Module_ObjectDb{
 				$mesg = "完成新增";
 				$this->reDirect($mesg, "/admin/download/page_name/download_list/");
 			}
+		}
+		else if ($page_name == "delete"){
+			$id = $this->getVariables("id");
+			$upload_dir = $this->_upLoadDir . "/download";
+			$data = $this->selectDb("download", array("strWhe" => array("ID = '" . $id . "'")));
+			for ($x = 1;$x < 3;$x++){
+				$img_path = $upload_dir . "/" . $data[0]["FILE" . $x];
+				if (file_exists("." . $img_path)) {
+					@unlink("." . $img_path);
+				}
+			}
+			
+			$this->deleteDb("download", array("strWhe" => array("ID = '" . $id . "'")));
+			$this->reDirect("已成功刪除資料", "/admin/download/page_name/download_list/");
 		}
 		else if ($page_name == "delimg"){
 			$id = $this->getVariables("id");
